@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFinder</title>
+    <style>
+        @import url('./assets/font-awesome/css/font-awesome.css');
+        @import url('./assets/bootstrap5/css/bootstrap.min.css');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css');
+        @import url('./css/responsive.css');
+        @import url('./css/print.css');
+        @import url('./css/style.css');
+    </style>
+</head>
+<body>
+    <main class="container-fluid flex-grow-1 d-flex justify-content-center align-items-center py-5">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-4">
+                <div class="card border-danger shadow-lg bg-dark text-white">
+                    <div class="card-body p-3">
+                        <div class="text-center mb-4">
+                            <div class="mb-1">
+                                <i class="fa-solid fa-clapperboard text-danger" style="font-size: 35px;"></i>
+                            </div>
+                            <h2 class="fw-bold">Welcome Back</h2>
+                            <p class="text-secondary mb-0">Login to continue to Movie<span class="text-danger"> Finder</span></p>
+                        </div>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label fw-semibold">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-danger">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </span>
+                                    <input type="email" class="form-control bg-dark text-white border-secondary" id="loginEmail" placeholder="Enter your email" autocomplete="email">
+                                </div>
+                                <small id="emailError" class="text-danger"></small>
+                            </div>
+                            <div class="mb-2">
+                                <label for="loginPassword" class="form-label fw-semibold">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-danger">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </span>
+                                    <input type="password" class="form-control bg-dark text-white border-secondary" id="loginPassword" placeholder="Enter your password" autocomplete="current-password">
+                                    <button type="button" class="btn btn-outline-secondary" id="passwordToggle">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+                                <small id="passwordError" class="text-danger"></small>
+                            </div>
+                            <div class="text-end mb-4">
+                                <a href="forgot-password.html" class="text-danger text-decoration-none">Forgot Password?</a>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100 py-2 fw-semibold">
+                                <i class="fa-solid fa-right-to-bracket"></i> Login
+                            </button>
+                        </form>
+                        <div id="successMessage" class="alert alert-success mt-4 mb-0" style="display: none;">
+                            <i class="fa-solid fa-circle-check"></i> Login successful!
+                        </div>
+                        <div class="text-center mt-4">
+                            <p class="text-secondary mb-0">Don't have an account?
+                                <a href="signup.html" class="text-danger fw-semibold text-decoration-none">Create Account</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./assets/bootstrap5/js/bootstrap.bundle.js"></script>
+    <script src="./assets/jqery.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>
