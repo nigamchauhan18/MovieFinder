@@ -362,3 +362,80 @@ body {
         height: 200px;
     }
 }
+
+
+.aboutApplication {
+    background-color: rgb(15, 15, 18);
+}
+.aboutApplication .about-content-card {
+    background-color: rgb(23, 23, 28);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aboutApplication .about-content-card:hover {
+    box-shadow: 0 12px 35px rgba(220, 53, 69, 0.10) !important;
+}
+
+.aboutApplication .about-feature-card {
+    background-color: rgb(23, 23, 28);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aboutApplication .about-feature-card:hover {
+    transform: translateY(-7px);
+    border-color: rgb(255, 65, 85) !important;
+    box-shadow: 0 10px 25px rgba(220, 53, 69, 0.12);
+}
+
+.aboutApplication .about-feature-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background-color: rgba(220, 53, 69, 0.12);
+    color: rgb(220, 53, 69);
+    font-size: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.aboutApplication .about-feature-card:hover .about-feature-icon {
+    background-color: rgb(220, 53, 69);
+    color: rgb(255, 255, 255);
+}
+
+.aboutApplication .about-cta {
+    background: linear-gradient(
+        135deg,
+        rgb(31, 20, 24),
+        rgb(23, 23, 28)
+    );
+    border: 1px solid rgba(220, 53, 69, 0.45);
+}
+
+.aboutApplication .about-cta .btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aboutApplication .about-cta .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(220, 53, 69, 0.25);
+}
+@media (max-width: 767px) {
+    .aboutApplication .about-content-card {
+        padding: 25px !important;
+    }
+    .aboutApplication .about-feature-card {
+        padding: 22px !important;
+    }
+    .aboutApplication .about-cta {
+        padding: 30px 20px !important;
+    }
+    .aboutApplication h2 {
+        font-size: 27px;
+    }
+    .aboutApplication h3 {
+        font-size: 23px;
+    }
+}
