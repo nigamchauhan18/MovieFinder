@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFinder</title>
+    <style>
+        @import url('./assets/font-awesome/css/font-awesome.css');
+        @import url('./assets/bootstrap5/css/bootstrap.min.css');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css');
+        @import url('./css/style.css');
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg shadow border-bottom border-danger finder_navbar fixed-top">
+        <div class="container-fluid px-3 px-lg-5 py-2">
+            <div class="navbar-logo">
+                <a class="navbar-brand text-white mb-0" href="index.html">
+                    <i class="fa-solid fa-clapperboard text-danger"></i>
+                    Movie<span class="text-danger fw-bold">Finder</span>
+                </a>
+            </div>
+            <div class="navbar-hamburger">
+                <button class="navbar-toggler border border-danger" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon finder_menuIcon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav navbar-main-links mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" href="index.html">
+                            <i class="fa-solid fa-house finder_icon"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="about.html">
+                            <i class="fa-solid fa-circle-info finder_icon"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="movies.html">
+                            <i class="fa-solid fa-clapperboard finder_icon"></i> Movies
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="contact.html">
+                            <i class="fa-solid fa-phone finder_icon text-danger"></i> Contact
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-extra-links mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="favorites.html">
+                            <i class="fa-regular fa-heart finder_icon"></i> Favorites
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="watchlist.html">
+                            <i class="fa-solid fa-clipboard-list finder_icon"></i> Watchlist
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero finder-marginTop">
+        <div class="container text-center">
+            <span class="contact-badge">
+                <i class="fa-solid fa-paper-plane me-2"></i> GET IN TOUCH
+            </span>
+            <h1>Contact <span>Us</span></h1>
+            <p>Have a question, suggestion, or feedback? We'd love to hear from you.</p>
+        </div>
+    </section>
+    <section class="contact-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="contact-info-card">
+                        <h2>Let's Talk</h2>
+                        <p class="contact-info-description">
+                            We're always looking for ways to make MovieFinder better.
+                            Send us your questions, ideas, or feedback.
+                        </p>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email Us</h5>
+                                <p>support@moviefinder.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Support Hours</h5>
+                                <p>Monday – Friday</p>
+                                <p>9:00 AM – 6:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-film"></i>
+                            </div>
+                            <div>
+                                <h5>MovieFinder Support</h5>
+                                <p>We're here to help you enjoy movies.</p>
+                            </div>
+                        </div>
+                        <div class="contact-social">
+                            <h5>Follow Us</h5>
+                            <div class="social-links">
+                                <a href="#" aria-label="Facebook">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                                <a href="#" aria-label="Instagram">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                                <a href="#" aria-label="X">
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                </a>
+                                <a href="#" aria-label="GitHub">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="contact-form-card">
+                        <h2>Send Us a Message</h2>
+                        <p class="form-description">Fill out the form below and we'll get back to you.</p>
+                        <div id="successMessage" class="alert alert-success d-none" role="alert">
+                            <i class="fa-solid fa-circle-check me-2"></i>
+                            Your message has been submitted successfully!
+                        </div>
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="contactName" class="form-label">
+                                        Full Name <span>*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="contactName" placeholder="Enter your full name">
+                                    <small class="error-message" id="nameError"></small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactEmail" class="form-label">
+                                        Email Address <span>*</span>
+                                    </label>
+                                    <input type="email" class="form-control" id="contactEmail" placeholder="Enter your email">
+                                    <small class="error-message" id="emailError"></small>
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactSubject" class="form-label">
+                                        Subject <span>*</span>
+                                    </label>
+                                    <select class="form-select" id="contactSubject">
+                                        <option value="">Select a subject</option>
+                                        <option value="General Inquiry">General Inquiry</option>
+                                        <option value="Technical Support">Technical Support</option>
+                                        <option value="Movie Suggestion">Movie Suggestion</option>
+                                        <option value="Bug Report">Bug Report</option>
+                                        <option value="Feedback">Feedback</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <small class="error-message" id="subjectError"></small>
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactMessage" class="form-label">
+                                        Your Message <span>*</span>
+                                    </label>
+                                    <textarea class="form-control" id="contactMessage" rows="5" maxlength="1000" placeholder="Write your message here..."></textarea>
+                                    <small class="error-message" id="messageError"></small>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn contact-submit-btn">
+                                        <i class="fa-solid fa-paper-plane me-2"></i> Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="finder_footer border-top border-danger">
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="finder_brand">
+                        <h3>
+                            <i class="fa-solid fa-clapperboard text-danger"></i>
+                            Movie<span class="text-danger fw-bold">Finder</span>
+                        </h3>
+                        <p>
+                            Discover movies, explore details, and find
+                            your next favorite movie in one place.
+                        </p>
+                        <div class="social-links">
+                            <a href="/" aria-label="Facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+
+                            <a href="/" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+
+                            <a href="/" aria-label="Twitter">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="/" aria-label="YouTube">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/movies.html">Movies</a></li>
+                        <li><a href="/contact.html">Contact US</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5>Categories</h5>
+                    <ul class="footer-links">
+                        <li><a href="/movies.html">Action</a></li>
+                        <li><a href="/movies.html">Comedy</a></li>
+                        <li><a href="/movies.html">Drama</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Stay Updated</h5>
+                    <p class="footer-text">
+                        Get the latest movie discoveries and updates.
+                    </p>
+                    <div class="subscribe-box">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn subscribe-btn">
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-start">
+                        <p class="mb-0">
+                            <i class="fa-regular fa-copyright"></i> 2026 MovieFinder. All Rights Reserved.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="/">Privacy Policy</a>
+                        <span>|</span>
+                        <a href="/">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="./assets/bootstrap5/js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+    <script src="./js/contact.js"></script>
+</body>
+</html>
