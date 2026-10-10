@@ -14,40 +14,58 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg shadow border-bottom border-danger finder_navbar fixed-top">
-        <div class="container-fluid g-0 px-5 py-1 row">
-            <a class="navbar-brand col-md-2 text-white" href="/"><i class="fa-solid fa-clapperboard text-danger"></i>
-                Movie<span class="text-danger fw-bold">Finder</span></a>
-            <button class="navbar-toggler border border-danger" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon finder_menuIcon"></span>
-            </button>
-            <div class="collapse navbar-collapse col-md-7 justify-content-center" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
+        <div class="container-fluid px-3 px-lg-5 py-2">
+            <div class="navbar-logo">
+                <a class="navbar-brand text-white mb-0" href="index.html">
+                    <i class="fa-solid fa-clapperboard text-danger"></i>
+                    Movie<span class="text-danger fw-bold">Finder</span>
+                </a>
+            </div>
+            <div class="navbar-hamburger">
+                <button class="navbar-toggler border border-danger" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon finder_menuIcon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav navbar-main-links mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="/"><i class="fa-solid fa-house finder_icon"></i>Home</a>
+                        <a class="nav-link active text-white" href="index.html">
+                            <i class="fa-solid fa-house finder_icon"></i> Home
+                        </a>
                     </li>
-                    <li class="nav-item text-white">
-                        <a class="nav-link text-white fw-bold" href="movies.html"><i class="fa-solid fa-clapperboard finder_icon text-danger"></i>Movies</a>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="movies.html">
+                            <i class="fa-solid fa-clapperboard finder_icon text-danger"></i> Movies
+                        </a>
                     </li>
-                    <li class="nav-item text-white">
-                        <a class="nav-link text-white" href="about.html"><i class="fa-solid fa-circle-info finder_icon "></i>About</a>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="about.html">
+                            <i class="fa-solid fa-circle-info finder_icon"></i> About
+                        </a>
                     </li>
                 </ul>
-            </div>
-            <div class="col-md-3 collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item text-white">
-                        <a class="nav-link text-white" aria-current="page" href="favorites.html"><i class="fa-regular fa-heart text-white finder_icon"></i>Favorites</a>
+                <ul class="navbar-nav navbar-extra-links mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="favorites.html">
+                            <i class="fa-regular fa-heart finder_icon"></i> Favorites
+                        </a>
                     </li>
-                    <li class="nav-item text-white">
-                        <a class="nav-link text-white" href="watchlist.html"><i class="fa-solid fa-clipboard-list finder_icon"></i>Watchlist</a>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="watchlist.html">
+                            <i class="fa-solid fa-clipboard-list finder_icon"></i> Watchlist
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- movie Section -->
     <section class="movies-hero py-5 finder-marginTop">
         <div class="container py-5">
             <div class="text-center">
@@ -233,6 +251,7 @@
             </div>
         </div>
     </footer>
+    
     <script src="./assets/bootstrap5/js/bootstrap.bundle.js"></script>
     <script src="./js/movies.js"></script>
 </body>

@@ -14,19 +14,67 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg shadow border-bottom border-danger finder_navbar fixed-top">
-        <div class="container-fluid g-0 px-5 py-1 row">
-            <a class="navbar-brand col-md-6 text-white" href="/"><i class="fa-solid fa-clapperboard text-danger"></i>
-                Movie<span class="text-danger fw-bold">Finder</span>
-            </a>
-            <button class="navbar-toggler border border-danger" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="col-md-6 collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item text-white">
-                        <a class="nav-link text-white" aria-current="page" href="login.html"><i class="fa-solid fa-right-to-bracket text-white finder_icon"></i>Login</a>
+        <div class="container-fluid px-3 px-md-5 py-2 d-flex flex-wrap">
+            <div class="d-flex align-items-center justify-content-between w-100 navbar-top">
+                <a class="navbar-brand text-white mb-0" href="/">
+                    <i class="fa-solid fa-clapperboard text-danger"></i>
+                    Movie<span class="text-danger fw-bold">Finder</span>
+                </a>
+                <button class="navbar-toggler border border-danger"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link text-white" href="login.html">
+                            <i class="fa-solid fa-right-to-bracket finder_icon me-1"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown d-none" id="profileNavItem">
+                        <a class="nav-link dropdown-toggle text-white d-flex align-items-center gap-2"
+                            href="#"
+                            id="profileDropdown"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="profile-avatar" id="profileInitials">NC</span>
+                            <span id="profileName">Nigam Chauhan</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown">
+                            <li>
+                                <h6 class="dropdown-header">My Account</h6>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="movies.html">
+                                    <i class="fa-solid fa-film me-2"></i> Movies
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="favorites.html">
+                                    <i class="fa-solid fa-heart me-2"></i> Favorites
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="watchlist.html">
+                                    <i class="fa-solid fa-clipboard-list me-2"></i> Watchlist
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <button class="dropdown-item text-danger" type="button" id="logoutBtn">
+                                    <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+                                </button>
+                            </li>    
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -184,5 +232,6 @@
     </footer>
 
     <script src="./assets/bootstrap5/js/bootstrap.bundle.js"></script>
+    <script src="./js/navbar.js"></script>
 </body>
 </html>
