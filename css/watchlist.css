@@ -1,0 +1,1140 @@
+/* =========================================
+   MOVIEFINDER — WATCHLIST PAGE
+========================================= */
+
+:root {
+    --wl-bg-primary: #0b0b14;
+    --wl-bg-secondary: #11111e;
+    --wl-bg-card: #171727;
+
+    --wl-text-primary: #f5f5ff;
+    --wl-text-secondary: #a5a5bc;
+
+    --wl-accent: #8b5cf6;
+    --wl-accent-hover: #7c3aed;
+
+    --wl-border: rgba(255, 255, 255, 0.09);
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.watchlist-page {
+    min-height: 650px;
+    padding: 65px 0 90px;
+
+    background:
+        radial-gradient(
+            ellipse at 90% 0%,
+            rgba(139, 92, 246, 0.10),
+            transparent 35%
+        ),
+        var(--wl-bg-primary);
+
+    color: var(--wl-text-primary);
+}
+
+.watchlist-page,
+.watchlist-page * {
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.watchlist-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 45px;
+    padding: 15px 0;
+}
+
+.watchlist-heading-content {
+    max-width: 720px;
+}
+
+.watchlist-eyebrow {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+
+    color: #b8a0ff;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.watchlist-eyebrow i {
+    color: var(--wl-accent);
+    font-size: 14px;
+}
+
+.watchlist-heading h1 {
+    margin: 0 0 17px;
+
+    color: var(--wl-text-primary);
+
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.15;
+}
+
+.watchlist-heading h1 span {
+    color: var(--wl-accent);
+}
+
+.watchlist-heading-content > p {
+    max-width: 620px;
+
+    margin: 0;
+
+    color: var(--wl-text-secondary);
+
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.watchlist-heading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 130px;
+    height: 130px;
+
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139, 92, 246, 0.18),
+            rgba(139, 92, 246, 0.04)
+        );
+
+    transform: rotate(-5deg);
+}
+
+.watchlist-heading-icon i {
+    color: var(--wl-accent);
+    font-size: 52px;
+}
+
+
+/* =========================================
+   TOOLBAR
+========================================= */
+
+.watchlist-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 50px;
+    padding: 23px;
+
+    border: 1px solid var(--wl-border);
+    border-radius: 18px;
+
+    background: var(--wl-bg-secondary);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+.watchlist-total {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.watchlist-total-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 54px;
+    height: 54px;
+
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 15px;
+
+    background: rgba(139, 92, 246, 0.12);
+
+    color: #b8a0ff;
+    font-size: 21px;
+}
+
+.watchlist-total h3 {
+    margin: 0 0 5px;
+
+    color: var(--wl-text-primary);
+
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.watchlist-total p {
+    margin: 0;
+
+    color: var(--wl-text-secondary);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.watchlist-search {
+    display: flex;
+    align-items: center;
+
+    width: min(100%, 360px);
+    height: 48px;
+
+    border: 1px solid var(--wl-border);
+    border-radius: 12px;
+
+    background: #151524;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.watchlist-search:focus-within {
+    border-color: var(--wl-accent);
+
+    box-shadow:
+        0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+.watchlist-search > i {
+    padding-left: 16px;
+
+    color: var(--wl-text-secondary);
+    font-size: 14px;
+}
+
+.watchlist-search input {
+    width: 100%;
+    height: 100%;
+
+    padding: 0 10px 0 25px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--wl-text-primary);
+
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.watchlist-search input::placeholder {
+    color: #77778f;
+}
+
+.watchlist-search input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.watchlist-search button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 35px;
+    height: 35px;
+    margin-right: 6px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--wl-text-secondary);
+
+    cursor: pointer;
+}
+
+.watchlist-search button.visible {
+    display: flex;
+}
+
+.watchlist-search button:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: white;
+}
+
+
+/* =========================================
+   RESULTS HEADER
+========================================= */
+
+.watchlist-results-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.watchlist-results-header h2 {
+    margin: 0 0 8px;
+
+    color: var(--wl-text-primary);
+
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.watchlist-results-header p {
+    margin: 0;
+
+    color: var(--wl-text-secondary);
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.watchlist-results-count {
+    flex-shrink: 0;
+
+    padding: 9px 14px;
+
+    border: 1px solid var(--wl-border);
+    border-radius: 10px;
+
+    background: var(--wl-bg-secondary);
+
+    color: var(--wl-text-secondary);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.watchlist-results-count span {
+    color: #b8a0ff;
+    font-weight: 800;
+}
+
+
+/* =========================================
+   MOVIE GRID
+========================================= */
+
+.watchlist-grid {
+    display: grid;
+
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================================
+   MOVIE CARD
+========================================= */
+
+.watchlist-card {
+    min-width: 0;
+    overflow: hidden;
+
+    border: 1px solid var(--wl-border);
+    border-radius: 16px;
+
+    background: var(--wl-bg-card);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+
+    animation: watchlistCardAppear 0.35s ease both;
+}
+
+.watchlist-card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(139, 92, 246, 0.45);
+
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================
+   POSTER
+========================================= */
+
+.watchlist-poster-wrapper {
+    position: relative;
+
+    overflow: hidden;
+
+    aspect-ratio: 2 / 3;
+
+    background: #202033;
+}
+
+.watchlist-poster {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.45s ease;
+}
+
+.watchlist-card:hover .watchlist-poster {
+    transform: scale(1.045);
+}
+
+
+/* Poster fallback */
+
+.watchlist-poster-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 15px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(139, 92, 246, 0.2),
+            transparent 65%
+        ),
+        #171727;
+
+    color: var(--wl-text-secondary);
+    text-align: center;
+}
+
+.watchlist-poster-fallback i {
+    color: var(--wl-accent);
+    font-size: 35px;
+}
+
+.watchlist-poster-fallback span {
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* Poster overlay */
+
+.watchlist-poster-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    padding: 13px;
+
+    background: linear-gradient(
+        to top,
+        rgba(7, 7, 15, 0.75),
+        transparent 45%
+    );
+
+    pointer-events: none;
+}
+
+.watchlist-badge {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+
+    background: rgba(15, 15, 28, 0.85);
+
+    color: #b8a0ff;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.watchlist-card-body {
+    padding: 16px 14px 14px;
+}
+
+.watchlist-card-title {
+    display: -webkit-box;
+
+    overflow: hidden;
+
+    min-height: 44px;
+    margin: 0 0 9px;
+
+    color: var(--wl-text-primary);
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.55;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.watchlist-card-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-bottom: 16px;
+
+    color: var(--wl-text-secondary);
+    font-size: 11px;
+}
+
+.watchlist-card-meta .meta-dot {
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: #666680;
+}
+
+.watchlist-card-meta .movie-type {
+    color: #b8a0ff;
+    text-transform: capitalize;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.watchlist-actions {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.watchlist-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    width: 100%;
+    min-height: 38px;
+
+    padding: 9px 6px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+
+/* Add to favorites */
+
+.add-favorite-btn {
+    border-color: rgba(139, 92, 246, 0.22);
+
+    background: rgba(139, 92, 246, 0.09);
+
+    color: #b8a0ff;
+}
+
+.add-favorite-btn:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+
+    background: rgba(139, 92, 246, 0.18);
+
+    color: #d3c4ff;
+}
+
+.add-favorite-btn.is-favorite {
+    border-color: rgba(255, 91, 128, 0.2);
+
+    background: rgba(255, 91, 128, 0.07);
+
+    color: #ff819f;
+}
+
+.add-favorite-btn.is-favorite:hover {
+    background: rgba(255, 91, 128, 0.15);
+}
+
+
+/* Remove from watchlist */
+
+.remove-watchlist-btn {
+    border-color: rgba(255, 255, 255, 0.08);
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: var(--wl-text-secondary);
+}
+
+.remove-watchlist-btn:hover {
+    border-color: rgba(255, 91, 128, 0.35);
+
+    background: rgba(255, 91, 128, 0.1);
+
+    color: #ff819f;
+}
+
+.watchlist-action-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.watchlist-empty,
+.watchlist-no-results {
+    padding: 65px 20px;
+
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+
+    background: rgba(17, 17, 30, 0.65);
+
+    text-align: center;
+}
+
+.watchlist-empty[hidden],
+.watchlist-no-results[hidden] {
+    display: none !important;
+}
+
+.empty-bookmark-icon,
+.no-results-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 25px;
+
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 28px;
+
+    background: rgba(139, 92, 246, 0.1);
+
+    color: #b8a0ff;
+
+    font-size: 35px;
+}
+
+.watchlist-empty h2,
+.watchlist-no-results h3 {
+    margin: 0 0 13px;
+
+    color: var(--wl-text-primary);
+
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.watchlist-empty > p,
+.watchlist-no-results > p {
+    max-width: 450px;
+
+    margin: 0 auto 25px;
+
+    color: var(--wl-text-secondary);
+
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   DISCOVER BUTTON
+========================================= */
+
+.watchlist-discover-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 13px 22px;
+
+    border: 1px solid var(--wl-accent);
+    border-radius: 11px;
+
+    background: var(--wl-accent);
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.watchlist-discover-btn:hover {
+    background: var(--wl-accent-hover);
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   NO RESULTS BUTTON
+========================================= */
+
+.watchlist-no-results button {
+    padding: 10px 18px;
+
+    border: 1px solid var(--wl-border);
+    border-radius: 9px;
+
+    background: #202033;
+
+    color: var(--wl-text-primary);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.watchlist-no-results button:hover {
+    background: var(--wl-accent);
+}
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+.watchlist-toast {
+    position: fixed;
+    z-index: 2000;
+
+    right: 25px;
+    bottom: 25px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    width: min(390px, calc(100% - 30px));
+
+    padding: 16px;
+
+    border: 1px solid var(--wl-border);
+    border-radius: 15px;
+
+    background: #1b1b2d;
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.watchlist-toast.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    background: rgba(34, 197, 94, 0.12);
+
+    color: #4ade80;
+
+    font-size: 15px;
+}
+
+.toast-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.toast-content h6 {
+    margin: 0 0 5px;
+
+    color: var(--wl-text-primary);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.toast-content p {
+    margin: 0;
+
+    color: var(--wl-text-secondary);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.watchlist-toast > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--wl-text-secondary);
+
+    cursor: pointer;
+}
+
+.watchlist-toast > button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes watchlistCardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1199px) {
+    .watchlist-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .watchlist-heading-icon {
+        width: 110px;
+        height: 110px;
+    }
+
+    .watchlist-heading-icon i {
+        font-size: 43px;
+    }
+}
+
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 991px) {
+    .watchlist-page {
+        padding: 50px 0 70px;
+    }
+
+    .watchlist-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .watchlist-heading {
+        margin-bottom: 35px;
+    }
+
+    .watchlist-toolbar {
+        margin-bottom: 40px;
+    }
+
+    .watchlist-heading-icon {
+        width: 95px;
+        height: 95px;
+
+        border-radius: 25px;
+    }
+
+    .watchlist-heading-icon i {
+        font-size: 36px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+    .watchlist-page {
+        min-height: 500px;
+        padding: 38px 0 55px;
+    }
+
+    .watchlist-heading {
+        margin-bottom: 30px;
+        padding: 0;
+    }
+
+    .watchlist-heading h1 {
+        font-size: 37px;
+        letter-spacing: -1.3px;
+    }
+
+    .watchlist-heading-content > p {
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    .watchlist-heading-icon {
+        display: none;
+    }
+
+    .watchlist-eyebrow {
+        margin-bottom: 13px;
+        font-size: 10px;
+    }
+
+    .watchlist-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+
+        gap: 20px;
+
+        margin-bottom: 35px;
+        padding: 18px;
+    }
+
+    .watchlist-search {
+        width: 100%;
+    }
+
+    .watchlist-results-header {
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .watchlist-results-header h2 {
+        font-size: 21px;
+    }
+
+    .watchlist-results-header p {
+        max-width: 260px;
+        font-size: 11px;
+    }
+
+    .watchlist-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .watchlist-card {
+        border-radius: 13px;
+    }
+
+    .watchlist-card-body {
+        padding: 12px 10px 10px;
+    }
+
+    .watchlist-card-title {
+        min-height: 40px;
+        font-size: 12px;
+    }
+
+    .watchlist-card-meta {
+        gap: 6px;
+        margin-bottom: 12px;
+        font-size: 10px;
+    }
+
+    .watchlist-badge {
+        gap: 5px;
+        padding: 6px 8px;
+        font-size: 9px;
+    }
+
+    .watchlist-action-btn {
+        min-height: 35px;
+        padding: 8px 4px;
+        font-size: 9px;
+    }
+
+    .watchlist-empty,
+    .watchlist-no-results {
+        padding: 45px 18px;
+    }
+
+    .empty-bookmark-icon,
+    .no-results-icon {
+        width: 75px;
+        height: 75px;
+        margin-bottom: 20px;
+        font-size: 29px;
+    }
+
+    .watchlist-empty h2,
+    .watchlist-no-results h3 {
+        font-size: 20px;
+    }
+
+    .watchlist-empty > p,
+    .watchlist-no-results > p {
+        font-size: 12px;
+    }
+
+    .watchlist-toast {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+    .watchlist-grid {
+        gap: 10px;
+    }
+
+    .watchlist-card-body {
+        padding: 10px 8px 8px;
+    }
+
+    .watchlist-card-title {
+        font-size: 11px;
+    }
+
+    .watchlist-card-meta {
+        font-size: 9px;
+    }
+
+    .watchlist-action-btn {
+        font-size: 8px;
+    }
+
+    .watchlist-results-count {
+        padding: 8px 10px;
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .watchlist-card,
+    .watchlist-poster,
+    .watchlist-toast,
+    .watchlist-discover-btn {
+        animation: none;
+        transition: none;
+    }
+}

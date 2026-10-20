@@ -1,102 +1,308 @@
-let signupForm = document.getElementById("signupForm");
+// =====================================
+// MovieFinder Signup
+// =====================================
 
-let signupName = document.getElementById("signupName");
-let signupEmail = document.getElementById("signupEmail");
-let signupPassword = document.getElementById("signupPassword");
-let confirmPassword = document.getElementById("confirmPassword");
-let terms = document.getElementById("terms");
-let nameError = document.getElementById("nameError");
-let emailError = document.getElementById("emailError");
-let passwordError = document.getElementById("passwordError");
-let confirmPasswordError = document.getElementById("confirmPasswordError");
-let passwordToggle = document.getElementById("passwordToggle");
-let confirmPasswordToggle = document.getElementById("confirmPasswordToggle");
-let termsError = document.getElementById("termsError");
-let successMessage = document.getElementById("successMessage");
+const USERS_KEY = "movieFinderUsers";
 
-passwordToggle.addEventListener("click", function () {
-    if (signupPassword.type === "password") {
-        signupPassword.type = "text";
-        passwordToggle.innerHTML = `<i class="fa-solid fa-eye-slash"></i>`;
-    } else {
-        signupPassword.type = "password";
-        passwordToggle.innerHTML = `<i class="fa-solid fa-eye"></i>`;
+const signupForm = document.getElementById("signupForm");
+
+const nameInput = document.getElementById("signupName");
+const emailInput = document.getElementById("signupEmail");
+const passwordInput = document.getElementById("signupPassword");
+const confirmPasswordInput = document.getElementById("confirmPassword");
+const termsCheckbox = document.getElementById("signupTerms");
+
+const signupError = document.getElementById("signupError");
+const signupSuccess = document.getElementById("signupSuccess");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const passwordError = document.getElementById("passwordError");
+const confirmPasswordError = document.getElementById("confirmPasswordError");
+const termsError = document.getElementById("termsError");
+
+const signupSubmit = signupForm.querySelector('button[type="submit"]');
+
+// Get registered demo accounts
+function getRegisteredUsers() {
+    try {
+        const users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+        return Array.isArray(users) ? users : [];
+    } catch (error) {
+        return [];
     }
-});
-confirmPasswordToggle.addEventListener("click", function () {
-    if (confirmPassword.type === "password") {
-        confirmPassword.type = "text";
-        confirmPasswordToggle.innerHTML = `<i class="fa-solid fa-eye-slash"></i>`;
-    } else {
-        confirmPassword.type = "password";
-        confirmPasswordToggle.innerHTML = `<i class="fa-solid fa-eye"></i>`;
-    }
-});
+}
 
-signupName.addEventListener("input", function () {
-    nameError.textContent = "";
-});
-signupEmail.addEventListener("input", function () {
-    emailError.textContent = "";
-});
-signupPassword.addEventListener("input", function () {
-    passwordError.textContent = "";
-});
-confirmPassword.addEventListener("input", function () {
-    confirmPasswordError.textContent = "";
-});
-terms.addEventListener("change", function () {
+// Display field errors
+function showFieldError(input, errorElement, message) {
+    errorElement.textContent = message;
+    input.classList.add("invalid");
+    input.classList.remove("valid");
+}
+
+// Clear field errors
+function clearFieldError(input, errorElement) {
+    errorElement.textContent = "";
+    input.classList.remove("invalid");
+}
+
+// Validate name
+function validateName() {
+    const name = nameInput.value.trim();
+
+    if (name.length < 2) {
+        showFieldError(
+            nameInput,
+            nameError,
+            "Name must contain at least 2 characters."
+        );
+        return false;
+    }
+
+    if (name.length > 60) {
+        showFieldError(
+            nameInput,
+            nameError,
+            "Name cannot exceed 60 characters."
+        );
+        return false;
+    }
+
+    clearFieldError(nameInput, nameError);
+    return true;
+}
+
+// Validate email
+function validateEmail() {
+    const email = emailInput.value.trim().toLowerCase();
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+        showFieldError(
+            emailInput,
+            emailError,
+            "Please enter a valid email address."
+        );
+        return false;
+    }
+
+    const users = getRegisteredUsers();
+
+    const alreadyRegistered = users.some(
+        user => user.email.toLowerCase() === email
+    );
+
+    if (alreadyRegistered) {
+        showFieldError(
+            emailInput,
+            emailError,
+            "This email is already registered. Please log in."
+        );
+        return false;
+    }
+
+    clearFieldError(emailInput, emailError);
+    return true;
+}
+
+// Validate password
+function validatePassword() {
+    const password = passwordInput.value;
+
+    if (password.length < 6) {
+        showFieldError(
+            passwordInput,
+            passwordError,
+            "Password must contain at least 6 characters."
+        );
+        return false;
+    }
+
+    if (password.length > 128) {
+        showFieldError(
+            passwordInput,
+            passwordError,
+            "Password cannot exceed 128 characters."
+        );
+        return false;
+    }
+
+    clearFieldError(passwordInput, passwordError);
+    return true;
+}
+
+// Validate confirm password
+function validateConfirmPassword() {
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    if (!confirmPassword) {
+        showFieldError(
+            confirmPasswordInput,
+            confirmPasswordError,
+            "Please confirm your password."
+        );
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        showFieldError(
+            confirmPasswordInput,
+            confirmPasswordError,
+            "Passwords do not match."
+        );
+        return false;
+    }
+
+    clearFieldError(confirmPasswordInput, confirmPasswordError);
+    return true;
+}
+
+// Validate terms
+function validateTerms() {
+    if (!termsCheckbox.checked) {
+        termsError.textContent =
+            "Please agree to the Terms and Conditions.";
+        return false;
+    }
+
     termsError.textContent = "";
+    return true;
+}
+
+// Validate fields as the user types
+nameInput.addEventListener("input", validateName);
+
+emailInput.addEventListener("input", function () {
+    // Avoid showing the duplicate-email error before the user enters an email.
+    if (emailInput.value.trim()) {
+        validateEmail();
+    } else {
+        clearFieldError(emailInput, emailError);
+    }
 });
 
+passwordInput.addEventListener("input", function () {
+    validatePassword();
+
+    if (confirmPasswordInput.value) {
+        validateConfirmPassword();
+    }
+});
+
+confirmPasswordInput.addEventListener("input", validateConfirmPassword);
+
+termsCheckbox.addEventListener("change", validateTerms);
+
+// Show/hide password buttons
+document.querySelectorAll(".signup-password-toggle").forEach(button => {
+    button.addEventListener("click", function () {
+        const targetId = this.dataset.target;
+        const input = document.getElementById(targetId);
+        const icon = this.querySelector("i");
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.replace("fa-eye", "fa-eye-slash");
+            this.setAttribute("aria-label", "Hide password");
+        } else {
+            input.type = "password";
+            icon.classList.replace("fa-eye-slash", "fa-eye");
+            this.setAttribute("aria-label", "Show password");
+        }
+    });
+});
+
+// Submit signup form
 signupForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    successMessage.style.display = "none";
+    signupError.classList.remove("show");
+    signupSuccess.classList.remove("show");
 
-    let name = signupName.value;
-    let email = signupEmail.value;
-    let password = signupPassword.value;
-    let confirm = confirmPassword.value;
+    const validName = validateName();
+    const validEmail = validateEmail();
+    const validPassword = validatePassword();
+    const validConfirmPassword = validateConfirmPassword();
+    const validTerms = validateTerms();
 
-    let valid = true;
-    if (name === "") {
-        nameError.textContent = "Please enter your name.";
-        valid = false;
-    }
-    if (email === "") {
-        emailError.textContent = "Please enter your email.";
-        valid = false;
-    }
-    if (password === "") {
-        passwordError.textContent = "Please create a password.";
-        valid = false;
-    }
-    if (confirm === "") {
-        confirmPasswordError.textContent = "Please confirm your password.";
-        valid = false;
-    }
-    if (!terms.checked) {
-        termsError.textContent = "Please accept the Terms & Conditions.";
-        valid = false;
-    }
-    if (!valid) {
+    if (
+        !validName ||
+        !validEmail ||
+        !validPassword ||
+        !validConfirmPassword ||
+        !validTerms
+    ) {
+        signupError.textContent =
+            "Please correct the highlighted fields and try again.";
+
+        signupError.classList.add("show");
         return;
     }
 
-    let user = {
-        signupName: name,
-        signupEmail: email,
-        signupPassword: password,
-        confirmPassword: confirm
-    };
-    localStorage.setItem("user", JSON.stringify(user));
+    const users = getRegisteredUsers();
 
-    successMessage.style.display = "block";
-    
-    signupForm.reset();
-    
-    setTimeout(function () {
-        window.location.href = "/login.html";
+    const email = emailInput.value.trim().toLowerCase();
+
+    // Check again immediately before saving
+    if (users.some(user => user.email.toLowerCase() === email)) {
+        showFieldError(
+            emailInput,
+            emailError,
+            "This email is already registered. Please log in."
+        );
+        return;
+    }
+
+    const newUser = {
+        id: crypto.randomUUID
+            ? crypto.randomUUID()
+            : String(Date.now()),
+
+        name: nameInput.value.trim(),
+        email: email,
+
+        // Demo only: never store real passwords in localStorage.
+        password: passwordInput.value
+    };
+
+    users.push(newUser);
+
+    try {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    } catch (error) {
+        signupError.textContent =
+            "Unable to save your account. Check your browser storage settings.";
+
+        signupError.classList.add("show");
+        return;
+    }
+
+    signupSuccess.textContent =
+        "Account created successfully! Redirecting you to Login...";
+
+    signupSuccess.classList.add("show");
+
+    signupSubmit.disabled = true;
+
+    // Registration does not automatically log the user in.
+    setTimeout(() => {
+        window.location.href = "login.html";
     }, 1500);
 });
+
+// Terms and Conditions modal
+const termsLink = document.getElementById("termsLink");
+
+if (termsLink) {
+    termsLink.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const termsModal = document.getElementById("termsModal");
+
+        bootstrap.Modal
+            .getOrCreateInstance(termsModal)
+            .show();
+    });
+}

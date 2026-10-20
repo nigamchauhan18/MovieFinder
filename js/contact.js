@@ -1,109 +1,321 @@
-let contactForm = document.querySelector('#contactForm');
+/* =====================================================
+   MOVIEFINDER — CONTACT PAGE
+   File: js/contact.js
+===================================================== */
 
-let contactName = document.querySelector('#contactName');
-let contactEmail = document.querySelector('#contactEmail');
-let contactSubject = document.querySelector('#contactSubject');
-let contactMessage = document.querySelector('#contactMessage');
+document.addEventListener("DOMContentLoaded", function () {
+    "use strict";
 
-let nameError = document.querySelector('#nameError');
-let emailError = document.querySelector('#emailError');
-let subjectError = document.querySelector('#subjectError');
-let messageError = document.querySelector('#messageError');
+    const contactForm = document.getElementById("contactForm");
 
-contactName.addEventListener('input', () => {
-    if (contactName.value !== "") {
-        nameError.style.display = 'none';
-    } else {
-        nameError.style.display = 'block' 
-    }
-});
-contactEmail.addEventListener('input', () => {
-    if (contactEmail.value !== "") {
-        emailError.style.display = 'none';
-    } else {
-        emailError.style.display = 'block' 
-    }
-});
-contactSubject.addEventListener('input', () => {
-    if (contactSubject.value !== "") {
-        subjectError.style.display = 'none';
-    } else {
-        subjectError.style.display = 'block' 
-    }
-});
-contactMessage.addEventListener('input', () => {
-    if (contactMessage.value !== "") {
-        messageError.style.display = 'none';
-    } else {
-        messageError.style.display = 'block' 
-    }
-});
+    const fullName = document.getElementById("fullName");
+    const emailID = document.getElementById("emailID");
+    const selectSubject = document.getElementById("selectSubject");
+    const textareaText = document.getElementById("textareaText");
 
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const subjectError = document.getElementById("subjectError");
+    const messageError = document.getElementById("messageError");
 
-    let user = localStorage.getItem('user');
-    if (!user) {
-        window.location.href = '/signup.html';
-        return;
-    }
-    
-    let isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (!isLoggedIn) {
-        window.location.href = '/login.html';
-        return;
-    }
+    const charCount = document.getElementById("charCount");
 
-    let valid = true;
-    if (contactName.value === "") {
-        nameError.style.display = 'block';
-        nameError.textContent = "Please enter your name.";
-        valid = false;
-    }
-    if (contactEmail.value === "") {
-        emailError.style.display = 'block';
-        emailError.textContent = "Please enter your email address.";
-        valid = false;
-    }
-    if (contactSubject.value === "") {
-        subjectError.style.display = 'block';
-        subjectError.textContent = "Please select a subject.";
-        valid = false;
-    }
-    if (contactMessage.value.length < 10) {
-        messageError.style.display = 'block';
-        messageError.textContent = "Message must contain at least 10 characters.";
-        valid = false;
-    }
-    if (!valid) {
-        return;
-    }
+    const successToast = document.getElementById("successToast");
+    const toastClose = document.getElementById("toastClose");
 
-    let templateParams = {
-        from_name: contactName.value.trim(),
-        from_email: contactEmail.value.trim(),
-        subject: contactSubject.value,
-        message: contactMessage.value.trim()
-    };
+    const submitBtn = document.getElementById("submitBtn");
 
-    try {
-        await emailjs.send('service_3nlurua', 'template_t39rtwl',
-            templateParams, {
-                publicKey: 'wGzfZlCf9ItV-tkqU'
+    const STORAGE_KEY = "movieFinderContactMessages";
+
+    let toastTimer;
+
+
+    // ==========================================
+    // READ SAVED MESSAGES
+    // ==========================================
+
+    function readMessages() {
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+
+            if (!saved) {
+                return [];
             }
-        );
-        let contactInfo = JSON.parse(localStorage.getItem('contactInfo')) || [];
-        contactInfo.unshift({
-            contactName: contactName.value,
-            contactEmail: contactEmail.value,
-            contactSubject: contactSubject.value,
-            contactMessage: contactMessage.value,
-        });
-        localStorage.setItem('contactInfo', JSON.stringify(contactInfo));
-        alert('Your message has been sent successfully!');
-        contactForm.reset();
-    } catch (error) {
-        console.error('Email sending failed:', error);
-        alert('Unable to send your message. Please try again later.');
+
+            const messages = JSON.parse(saved);
+
+            return Array.isArray(messages) ? messages : [];
+
+        } catch (error) {
+            console.error("Could not read messages:", error);
+            return [];
+        }
     }
+
+
+    // ==========================================
+    // VALIDATION HELPERS
+    // ==========================================
+
+    function showError(input, errorElement, message) {
+        input.classList.add("is-invalid");
+        input.classList.remove("is-valid");
+
+        errorElement.textContent = message;
+    }
+
+
+    function showValid(input, errorElement) {
+        input.classList.remove("is-invalid");
+        input.classList.add("is-valid");
+
+        errorElement.textContent = "";
+    }
+
+
+    function validateName() {
+        const value = fullName.value.trim();
+
+        if (!value) {
+            showError(
+                fullName,
+                nameError,
+                "Please enter your full name."
+            );
+
+            return false;
+        }
+
+        if (value.length < 2) {
+            showError(
+                fullName,
+                nameError,
+                "Name must contain at least 2 characters."
+            );
+
+            return false;
+        }
+
+        showValid(fullName, nameError);
+
+        return true;
+    }
+
+
+    function validateEmail() {
+        const value = emailID.value.trim();
+
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!value) {
+            showError(
+                emailID,
+                emailError,
+                "Please enter your email address."
+            );
+
+            return false;
+        }
+
+        if (!pattern.test(value)) {
+            showError(
+                emailID,
+                emailError,
+                "Please enter a valid email address."
+            );
+
+            return false;
+        }
+
+        showValid(emailID, emailError);
+
+        return true;
+    }
+
+
+    function validateSubject() {
+        if (!selectSubject.value) {
+            showError(
+                selectSubject,
+                subjectError,
+                "Please select a subject."
+            );
+
+            return false;
+        }
+
+        showValid(selectSubject, subjectError);
+
+        return true;
+    }
+
+
+    function validateMessage() {
+        const value = textareaText.value.trim();
+
+        if (!value) {
+            showError(
+                textareaText,
+                messageError,
+                "Please enter your message."
+            );
+
+            return false;
+        }
+
+        if (value.length < 10) {
+            showError(
+                textareaText,
+                messageError,
+                "Message must contain at least 10 characters."
+            );
+
+            return false;
+        }
+
+        if (value.length > 1000) {
+            showError(
+                textareaText,
+                messageError,
+                "Message cannot exceed 1000 characters."
+            );
+
+            return false;
+        }
+
+        showValid(textareaText, messageError);
+
+        return true;
+    }
+
+
+    // ==========================================
+    // VALIDATE WHEN USERS EDIT FIELDS
+    // ==========================================
+
+    fullName.addEventListener("input", validateName);
+
+    emailID.addEventListener("input", validateEmail);
+
+    selectSubject.addEventListener("change", validateSubject);
+
+    textareaText.addEventListener("input", function () {
+        charCount.textContent = textareaText.value.length;
+
+        validateMessage();
+    });
+
+
+    // ==========================================
+    // TOAST NOTIFICATION
+    // ==========================================
+
+    function hideToast() {
+        successToast.classList.remove("show");
+
+        clearTimeout(toastTimer);
+    }
+
+
+    function showToast() {
+        clearTimeout(toastTimer);
+
+        successToast.classList.add("show");
+
+        toastTimer = setTimeout(hideToast, 3500);
+    }
+
+
+    toastClose.addEventListener("click", hideToast);
+
+
+    // ==========================================
+    // FORM SUBMISSION
+    // ==========================================
+
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const validName = validateName();
+        const validEmail = validateEmail();
+        const validSubject = validateSubject();
+        const validMessage = validateMessage();
+
+        if (
+            !validName ||
+            !validEmail ||
+            !validSubject ||
+            !validMessage
+        ) {
+            const firstInvalidField =
+                contactForm.querySelector(".is-invalid");
+
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+            }
+
+            return;
+        }
+
+
+        const message = {
+            id: Date.now(),
+
+            fullName: fullName.value.trim(),
+
+            emailID: emailID.value.trim(),
+
+            selectSubject: selectSubject.value,
+
+            textareaText: textareaText.value.trim(),
+
+            createdAt: new Date().toISOString()
+        };
+
+
+        // Save to browser storage.
+
+        submitBtn.disabled = true;
+
+        try {
+            const messages = readMessages();
+
+            messages.unshift(message);
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(messages)
+            );
+
+            // Reset the form.
+
+            contactForm.reset();
+
+            charCount.textContent = "0";
+
+            [
+                [fullName, nameError],
+                [emailID, emailError],
+                [selectSubject, subjectError],
+                [textareaText, messageError]
+            ].forEach(function ([input, errorElement]) {
+                input.classList.remove("is-invalid", "is-valid");
+                errorElement.textContent = "";
+            });
+
+            showToast();
+
+        } catch (error) {
+            console.error("Could not save contact message:", error);
+
+            alert(
+                "Unable to save your message in this browser. " +
+                "Please check your browser storage settings and try again."
+            );
+
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
+
 });

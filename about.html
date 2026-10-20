@@ -1,275 +1,1230 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieFinder</title>
-    <style>
-        @import url('./assets/font-awesome/css/font-awesome.css');
-        @import url('./assets/bootstrap5/css/bootstrap.min.css');
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css');
-        @import url('./css/style.css');
-    </style>
+
+    <title>About Us | MovieFinder</title>
+
+    <meta
+        name="description"
+        content="Learn about MovieFinder, your personal movie discovery platform. Discover movies, save favorites, and organize your watchlist."
+    >
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+        rel="stylesheet"
+    >
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Original Home Page CSS -->
+    <link rel="stylesheet" href="css/home.css">
+
+    <!-- About Page CSS -->
+    <link rel="stylesheet" href="css/about.css">
+
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg shadow border-bottom border-danger finder_navbar fixed-top">
-        <div class="container-fluid px-3 px-lg-5 py-2">
-            <div class="navbar-logo">
-                <a class="navbar-brand text-white mb-0" href="index.html">
-                    <i class="fa-solid fa-clapperboard text-danger"></i>
-                    Movie<span class="text-danger fw-bold">Finder</span>
-                </a>
-            </div>
-            <div class="navbar-hamburger">
-                <button class="navbar-toggler border border-danger" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon finder_menuIcon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse navbar-menu" id="navbarSupportedContent">
-                <ul class="navbar-nav navbar-main-links mb-2 mb-lg-0">
+
+    <!-- =========================
+         ORIGINAL NAVBAR
+    ========================== -->
+
+    <nav class="navbar navbar-expand-lg custom-navbar">
+
+        <div class="container">
+
+            <a href="index.html" class="navbar-brand">
+
+                <span class="brand-icon">
+                    <i class="fa-solid fa-film"></i>
+                </span>
+
+                <span>
+                    Movie<span class="brand-highlight">Finder</span>
+                </span>
+
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+
+                <ul class="navbar-nav mx-auto">
+
                     <li class="nav-item">
-                        <a class="nav-link active text-white" href="index.html">
-                            <i class="fa-solid fa-house finder_icon"></i> Home
+                        <a class="nav-link" href="index.html">
+                            <i class="fa-solid fa-house-user"></i>
+                            Home
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="about.html">
-                            <i class="fa-solid fa-circle-info finder_icon text-danger"></i> About
+                        <a class="nav-link" href="explore.html">
+                            <i class="fa-regular fa-compass"></i>
+                            Explore
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="movies.html">
-                            <i class="fa-solid fa-clapperboard finder_icon"></i> Movies
+                        <a class="nav-link active" href="about.html">
+                            <i class="fa-solid fa-circle-info"></i>
+                            About
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="contact.html">
-                            <i class="fa-solid fa-phone finder_icon"></i> Contact
+                        <a class="nav-link" href="favorites.html">
+
+                            <i class="fa-regular fa-heart"></i>
+
+                            Favorites
+
+                            <span class="nav-count" id="favoriteCount">
+                                0
+                            </span>
+
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="watchlist.html">
+
+                            <i class="fa-solid fa-bookmark"></i>
+
+                            Watchlist
+
+                            <span class="nav-count" id="watchlistCount">
+                                0
+                            </span>
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item" id="loginNavItem">
+
+                        <a href="login.html" class="nav-link login-btn">
+
+                            <i class="fa-solid fa-right-to-bracket"></i>
+
+                            Login
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item dropdown d-none" id="profileNavItem">
+
+                        <button
+                            class="nav-link profile-btn dropdown-toggle"
+                            type="button"
+                            id="profileDropdown"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+
+                            <i class="fa-solid fa-circle-user"></i>
+
+                            Profile
+
+                        </button>
+
+                        <div
+                            class="dropdown-menu dropdown-menu-end profile-menu p-3"
+                            aria-labelledby="profileDropdown"
+                        >
+
+                            <div class="profile-info">
+
+                                <div class="profile-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <h6 id="navUserName" class="mt-2 mb-1">
+                                    User Name
+                                </h6>
+
+                                <p id="navUserEmail" class="small mb-3">
+                                    user@example.com
+                                </p>
+
+                            </div>
+
+                            <hr>
+
+                            <button
+                                type="button"
+                                class="dropdown-item text-danger"
+                                id="logoutBtn"
+                            >
+
+                                <i class="fa-solid fa-right-from-bracket me-2"></i>
+
+                                Logout
+
+                            </button>
+
+                        </div>
+
+                    </li>
+
                 </ul>
-                <ul class="navbar-nav navbar-extra-links mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="favorites.html">
-                            <i class="fa-regular fa-heart finder_icon"></i> Favorites
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="watchlist.html">
-                            <i class="fa-solid fa-clipboard-list finder_icon"></i> Watchlist
-                        </a>
-                    </li>
-                </ul>
+
+                <div class="navbar-actions">
+
+                    <a href="index.html#featured" class="btn-primary-custom">
+
+                        Explore Movies
+
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                    </a>
+
+                </div>
+
             </div>
+
         </div>
+
     </nav>
 
-    <!-- About Section -->
-    <section class="py-5 aboutApplication finder-marginTop">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <span class="text-danger fw-bold small">DISCOVER MOVIEFINDER</span>
-                <h2 class="fw-bold mt-3 text-white">Your Ultimate Movie Companion</h2>
-                <p class="text-secondary mt-3 mx-auto" style="max-width: 650px;">
-                    Everything you need to discover, explore, and organize your favorite movies in one simple and convenient place.
-                </p>
-            </div>
-            <div class="about-content-card p-4 p-md-5 border border-danger rounded-4 shadow mb-5">
-                <div class="row align-items-center g-4">
-                    <div class="col-lg-7">
-                        <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2 mb-3">
-                            <i class="fa-solid fa-film me-2"></i> About Our Platform
-                        </span>
-                        <h3 class="fw-bold text-white mb-3">Movies Worth Discovering</h3>
-                        <p class="text-secondary lh-lg">
-                            MovieFinder is a user-friendly web application designed to make movie discovery simple and enjoyable. Find movies by title and explore their essential information without unnecessary complexity.
-                        </p>
-                        <p class="text-secondary lh-lg mb-0">
-                            From exploring movie ratings and descriptions to saving favorites and building your personal watchlist, MovieFinder helps you keep all your movie interests organized in one place.
-                        </p>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="p-4 rounded-4 text-center border border-danger bg-dark">
-                            <div class="mb-3">
-                                <i class="fa-solid fa-clapperboard text-danger" style="font-size: 65px;"></i>
-                            </div>
-                            <h4 class="text-white fw-bold">MovieFinder</h4>
-                            <p class="text-secondary mb-4">
-                                Discover your next favorite movie.
-                            </p>
-                            <div class="row g-3">
-                                <div class="col-4">
-                                    <i class="fa-solid fa-magnifying-glass text-danger fs-4"></i>
-                                    <p class="text-white small mt-2 mb-0">Discover</p>
-                                </div>
-                                <div class="col-4">
-                                    <i class="fa-solid fa-star text-danger fs-4"></i>
-                                    <p class="text-white small mt-2 mb-0">Explore</p>
-                                </div>
-                                <div class="col-4">
-                                    <i class="fa-solid fa-heart text-danger fs-4"></i>
-                                    <p class="text-white small mt-2 mb-0">Save</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mb-4">
-                <span class="text-danger fw-bold small">FEATURES</span>
-                <h3 class="fw-bold text-white mt-2">Everything You Need</h3>
-                <p class="text-secondary mt-2">
-                    Explore the features that make finding movies easier.
-                </p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="about-feature-card h-100 p-4 rounded-4 border border-danger">
-                        <div class="about-feature-icon mb-4">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                        <h5 class="fw-bold text-white mb-3">Smart Movie Search</h5>
-                        <p class="text-secondary mb-0">
-                            Search for movies by title and quickly discover relevant results that match your interests.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="about-feature-card h-100 p-4 rounded-4 border border-danger">
-                        <div class="about-feature-icon mb-4">
-                            <i class="fa-solid fa-circle-info"></i>
-                        </div>
-                        <h5 class="fw-bold text-white mb-3">Movie Information</h5>
-                        <p class="text-secondary mb-0">
-                            Explore movie posters, release years, genres, ratings, and descriptions to learn more.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="about-feature-card h-100 p-4 rounded-4 border border-danger">
-                        <div class="about-feature-icon mb-4">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <h5 class="fw-bold text-white mb-3">Favorite Movies</h5>
-                        <p class="text-secondary mb-0">
-                            Save the movies you love and revisit your favorite selections whenever you want.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="about-feature-card h-100 p-4 rounded-4 border border-danger">
-                        <div class="about-feature-icon mb-4">
-                            <i class="fa-solid fa-clipboard-list"></i>
-                        </div>
-                        <h5 class="fw-bold text-white mb-3">Personal Watchlist</h5>
-                        <p class="text-secondary mb-0">
-                            Create a list of movies you plan to watch and keep your future movie choices organized.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="about-cta text-center p-4 p-md-5 mt-5 rounded-4">
-                <div class="mb-3">
-                    <i class="fa-solid fa-film text-danger fs-1"></i>
-                </div>
-                <h3 class="text-white fw-bold mb-3">
-                    Ready to Discover Your Next Favorite?
-                </h3>
-                <p class="text-secondary mb-4">
-                    Start exploring movies and build your own collection of must-watch films.
-                </p>
-                <a href="movies.html" class="btn btn-danger px-4 py-2">
-                    <i class="fa-solid fa-magnifying-glass me-2"></i> Explore Movies
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="finder_footer border-top border-danger">
-        <div class="container py-4">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="finder_brand">
-                        <h3>
-                            <i class="fa-solid fa-clapperboard text-danger"></i>
-                            Movie<span class="text-danger fw-bold">Finder</span>
-                        </h3>
-                        <p>
-                            Discover movies, explore details, and find
-                            your next favorite movie in one place.
-                        </p>
-                        <div class="social-links">
-                            <a href="/" aria-label="Facebook">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                            <a href="/" aria-label="Instagram">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                            <a href="/" aria-label="Twitter">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-                            <a href="/" aria-label="YouTube">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <h5>Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/movies.html">Movies</a></li>
-                        <li><a href="/contact.html">Contact US</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2">
-                    <h5>Categories</h5>
-                    <ul class="footer-links">
-                        <li><a href="/movies.html">Action</a></li>
-                        <li><a href="/movies.html">Comedy</a></li>
-                        <li><a href="/movies.html">Drama</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Stay Updated</h5>
-                    <p class="footer-text">
-                        Get the latest movie discoveries and updates.
-                    </p>
-                    <div class="subscribe-box">
-                        <input type="email" class="form-control" placeholder="Enter your email">
-                        <button class="btn subscribe-btn">
-                            Contact
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
+    <!-- =========================
+         ABOUT HERO SECTION
+    ========================== -->
+
+    <main>
+
+        <section class="about-hero">
+
+            <div class="about-glow about-glow-one"></div>
+            <div class="about-glow about-glow-two"></div>
+
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6 text-start">
-                        <p class="mb-0">
-                            <i class="fa-regular fa-copyright"></i> 2026 MovieFinder. All Rights Reserved.
-                        </p>
+
+                <div class="row align-items-center g-5">
+
+                    <!-- Hero Content -->
+
+                    <div class="col-lg-7">
+
+                        <div class="about-hero-content">
+
+                            <div class="about-badge">
+
+                                <span class="about-badge-dot"></span>
+
+                                GET TO KNOW MOVIEFINDER
+
+                            </div>
+
+                            <h1>
+
+                                Every Great Story
+
+                                <span>Starts Somewhere.</span>
+
+                            </h1>
+
+                            <p class="about-hero-description">
+
+                                We believe finding your next favorite movie
+                                should be just as exciting as watching it.
+
+                                MovieFinder helps you discover incredible
+                                stories, explore movies, and organize your
+                                personal collection in one place.
+
+                            </p>
+
+                            <div class="about-hero-actions">
+
+                                <a
+                                    href="explore.html"
+                                    class="about-primary-btn"
+                                >
+
+                                    Explore Movies
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                                <a
+                                    href="#our-mission"
+                                    class="about-secondary-btn"
+                                >
+
+                                    Discover Our Mission
+
+                                    <i class="fa-solid fa-chevron-down"></i>
+
+                                </a>
+
+                            </div>
+
+                            <div class="about-hero-highlights">
+
+                                <div class="about-highlight">
+
+                                    <span class="highlight-icon">
+                                        <i class="fa-solid fa-compass"></i>
+                                    </span>
+
+                                    <div>
+                                        <strong>Discover</strong>
+                                        <small>Explore new stories</small>
+                                    </div>
+
+                                </div>
+
+                                <div class="about-highlight">
+
+                                    <span class="highlight-icon">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </span>
+
+                                    <div>
+                                        <strong>Save</strong>
+                                        <small>Keep your favorites</small>
+                                    </div>
+
+                                </div>
+
+                                <div class="about-highlight">
+
+                                    <span class="highlight-icon">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                    </span>
+
+                                    <div>
+                                        <strong>Organize</strong>
+                                        <small>Build your collection</small>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
-                    <div class="col-md-6 text-end">
-                        <a href="/">Privacy Policy</a>
-                        <span>|</span>
-                        <a href="/">Terms & Conditions</a>
+
+
+                    <!-- Hero Visual -->
+
+                    <div class="col-lg-5">
+
+                        <div class="about-visual">
+
+                            <div class="about-visual-orbit orbit-one"></div>
+                            <div class="about-visual-orbit orbit-two"></div>
+
+                            <div class="about-visual-card">
+
+                                <div class="about-visual-card-header">
+
+                                    <span>
+                                        <i class="fa-solid fa-clapperboard"></i>
+                                        MOVIEFINDER
+                                    </span>
+
+                                    <div class="visual-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="about-poster-art">
+
+                                    <div class="about-poster-glow"></div>
+
+                                    <div class="about-poster-icon">
+                                        <i class="fa-solid fa-film"></i>
+                                    </div>
+
+                                    <span class="about-poster-label">
+                                        LIGHTS. CAMERA. DISCOVER.
+                                    </span>
+
+                                    <h2>
+                                        Find Your
+                                        <span>Next Story.</span>
+                                    </h2>
+
+                                    <p>
+                                        Your personal universe of movies
+                                        starts here.
+                                    </p>
+
+                                    <div class="about-poster-decoration">
+
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="about-visual-card-footer">
+
+                                    <div class="visual-footer-icon">
+                                        <i class="fa-solid fa-sparkles"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Made for movie lovers</strong>
+                                        <span>Your personal cinema companion</span>
+                                    </div>
+
+                                    <i class="fa-solid fa-arrow-up-right-from-square visual-footer-arrow"></i>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Floating Card -->
+
+                            <div class="about-floating-card about-floating-top">
+
+                                <span class="floating-icon purple-floating">
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Discover Great Films</strong>
+                                    <small>Find something unforgettable</small>
+                                </div>
+
+                            </div>
+
+
+                            <div class="about-floating-card about-floating-bottom">
+
+                                <span class="floating-icon pink-floating">
+                                    <i class="fa-solid fa-heart"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Your Personal Collection</strong>
+                                    <small>Movies you love, all in one place</small>
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
+
                 </div>
+
             </div>
+
+        </section>
+
+
+        <!-- =========================
+             OUR STORY
+        ========================== -->
+
+        <section class="our-story-section" id="our-mission">
+
+            <div class="container">
+
+                <div class="row align-items-center g-5">
+
+                    <div class="col-lg-6">
+
+                        <div class="story-visual">
+
+                            <div class="story-image-card">
+
+                                <div class="story-image-top">
+
+                                    <span class="story-image-label">
+                                        <i class="fa-solid fa-film"></i>
+                                        OUR STORY
+                                    </span>
+
+                                    <span class="story-image-number">
+                                        01 / 03
+                                    </span>
+
+                                </div>
+
+                                <div class="story-main-art">
+
+                                    <div class="story-art-circle story-circle-one"></div>
+                                    <div class="story-art-circle story-circle-two"></div>
+
+                                    <i class="fa-solid fa-clapperboard story-clapper"></i>
+
+                                    <span class="story-art-caption">
+                                        A WORLD OF STORIES
+                                    </span>
+
+                                    <h3>
+                                        More Than
+                                        <span>Just Movies.</span>
+                                    </h3>
+
+                                    <p>
+                                        Every film has a story worth discovering.
+                                    </p>
+
+                                </div>
+
+                                <div class="story-image-bottom">
+
+                                    <span>
+                                        <i class="fa-solid fa-circle-play"></i>
+                                        DISCOVER
+                                    </span>
+
+                                    <span>
+                                        <i class="fa-solid fa-heart"></i>
+                                        SAVE
+                                    </span>
+
+                                    <span>
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        WATCH
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="story-decor story-decor-one"></div>
+                            <div class="story-decor story-decor-two"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-6">
+
+                        <div class="story-content">
+
+                            <span class="about-section-label">
+                                <span></span>
+                                WHO WE ARE
+                            </span>
+
+                            <h2>
+                                A Little Place for
+                                <span>Big Movie Moments.</span>
+                            </h2>
+
+                            <p>
+                                MovieFinder was created around a simple idea:
+                                discovering a great movie should be easy,
+                                enjoyable, and personal.
+                            </p>
+
+                            <p>
+                                With thousands of movies to explore, choosing
+                                what to watch can sometimes feel overwhelming.
+                                We bring useful movie information and personal
+                                collections together to make that experience
+                                more enjoyable.
+                            </p>
+
+                            <p>
+                                Whether you enjoy thrilling adventures,
+                                heartwarming romances, science fiction, or
+                                animated classics, MovieFinder helps you
+                                explore stories that match your interests.
+                            </p>
+
+                            <div class="story-note">
+
+                                <div class="story-note-icon">
+                                    <i class="fa-solid fa-quote-left"></i>
+                                </div>
+
+                                <p>
+                                    Great stories bring people together.
+                                    We're here to help you find yours.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             OUR MISSION
+        ========================== -->
+
+        <section class="mission-section">
+
+            <div class="container">
+
+                <div class="mission-card">
+
+                    <div class="mission-decoration mission-decoration-one"></div>
+                    <div class="mission-decoration mission-decoration-two"></div>
+
+                    <div class="mission-content">
+
+                        <span class="mission-label">
+                            <i class="fa-solid fa-bullseye"></i>
+                            OUR MISSION
+                        </span>
+
+                        <h2>
+                            Making Movie Discovery
+                            <span>Simple and Enjoyable.</span>
+                        </h2>
+
+                        <p>
+                            Our mission is to give movie lovers a convenient
+                            way to discover films, explore movie details,
+                            save their favorites, and plan what to watch next.
+                        </p>
+
+                        <a href="explore.html" class="mission-button">
+
+                            Start Exploring
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                    <div class="mission-icon-wrapper">
+
+                        <div class="mission-icon-ring ring-one"></div>
+                        <div class="mission-icon-ring ring-two"></div>
+
+                        <div class="mission-main-icon">
+                            <i class="fa-solid fa-film"></i>
+                        </div>
+
+                        <span class="mission-small-icon mission-small-one">
+                            <i class="fa-solid fa-heart"></i>
+                        </span>
+
+                        <span class="mission-small-icon mission-small-two">
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+
+                        <span class="mission-small-icon mission-small-three">
+                            <i class="fa-solid fa-bookmark"></i>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WHAT WE OFFER
+        ========================== -->
+
+        <section class="what-we-offer-section">
+
+            <div class="container">
+
+                <div class="about-section-heading">
+
+                    <span class="about-section-label">
+                        <span></span>
+                        THE MOVIEFINDER EXPERIENCE
+                    </span>
+
+                    <h2>
+                        Everything You Need
+                        <span>For Your Next Movie Night.</span>
+                    </h2>
+
+                    <p>
+                        From discovering something new to organizing
+                        your favorites, enjoy a more personal way to
+                        explore movies.
+                    </p>
+
+                </div>
+
+
+                <div class="row g-4">
+
+                    <!-- Feature 1 -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <article class="about-feature-card">
+
+                            <div class="about-feature-top">
+
+                                <div class="about-feature-icon feature-purple">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+
+                                <span class="about-feature-number">01</span>
+
+                            </div>
+
+                            <h3>Discover Movies</h3>
+
+                            <p>
+                                Search for your favorite titles and explore
+                                movies you haven't watched yet. Find
+                                information to help choose your next film.
+                            </p>
+
+                            <a href="explore.html" class="about-feature-link">
+
+                                Explore movies
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- Feature 2 -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <article class="about-feature-card">
+
+                            <div class="about-feature-top">
+
+                                <div class="about-feature-icon feature-pink">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+
+                                <span class="about-feature-number">02</span>
+
+                            </div>
+
+                            <h3>Save Your Favorites</h3>
+
+                            <p>
+                                Keep the movies you love in your personal
+                                favorites collection so you can easily
+                                find them again whenever you want.
+                            </p>
+
+                            <a href="favorites.html" class="about-feature-link">
+
+                                View favorites
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- Feature 3 -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <article class="about-feature-card">
+
+                            <div class="about-feature-top">
+
+                                <div class="about-feature-icon feature-blue">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                </div>
+
+                                <span class="about-feature-number">03</span>
+
+                            </div>
+
+                            <h3>Build Your Watchlist</h3>
+
+                            <p>
+                                Add movies you want to watch later and
+                                keep your next movie night organized
+                                with a collection tailored to you.
+                            </p>
+
+                            <a href="watchlist.html" class="about-feature-link">
+
+                                Open watchlist
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- Feature 4 -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <article class="about-feature-card">
+
+                            <div class="about-feature-top">
+
+                                <div class="about-feature-icon feature-orange">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                                <span class="about-feature-number">04</span>
+
+                            </div>
+
+                            <h3>Explore Ratings</h3>
+
+                            <p>
+                                Explore movie ratings and details to help
+                                you decide which film deserves a spot
+                                on your watchlist.
+                            </p>
+
+                            <a href="index.html#featured" class="about-feature-link">
+
+                                Find a movie
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- Feature 5 -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <article class="about-feature-card">
+
+                            <div class="about-feature-top">
+
+                                <div class="about-feature-icon feature-green">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </div>
+
+                                <span class="about-feature-number">05</span>
+
+                            </div>
+
+                            <h3>Keep Things Organized</h3>
+
+                            <p>
+                                Separate your favorite movies from the
+                                ones you plan to watch, making your
+                                personal movie collection easier to manage.
+                            </p>
+
+                            <a href="favorites.html" class="about-feature-link">
+
+                                View your collection
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- Feature 6 -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <article class="about-feature-card">
+
+                            <div class="about-feature-top">
+
+                                <div class="about-feature-icon feature-indigo">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </div>
+
+                                <span class="about-feature-number">06</span>
+
+                            </div>
+
+                            <h3>Enjoy Easy Discovery</h3>
+
+                            <p>
+                                Explore a clean, easy-to-use interface
+                                designed to make finding and organizing
+                                movies a straightforward experience.
+                            </p>
+
+                            <a href="index.html" class="about-feature-link">
+
+                                Discover MovieFinder
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             OUR VALUES
+        ========================== -->
+
+        <section class="values-section">
+
+            <div class="container">
+
+                <div class="about-section-heading">
+
+                    <span class="about-section-label">
+                        <span></span>
+                        WHAT MATTERS TO US
+                    </span>
+
+                    <h2>
+                        Built Around
+                        <span>Movie Lovers.</span>
+                    </h2>
+
+                    <p>
+                        A good movie discovery experience should be
+                        simple, personal, and enjoyable.
+                    </p>
+
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+
+                        <div class="value-card">
+
+                            <div class="value-icon">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+
+                            <h3>Made with Passion</h3>
+
+                            <p>
+                                We celebrate the stories, characters,
+                                and cinematic experiences that make
+                                movies special.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="value-card">
+
+                            <div class="value-icon">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+
+                            <h3>Easy to Explore</h3>
+
+                            <p>
+                                We aim to make discovering movies and
+                                organizing your personal collection
+                                straightforward and convenient.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="value-card">
+
+                            <div class="value-icon">
+                                <i class="fa-solid fa-user-check"></i>
+                            </div>
+
+                            <h3>Your Personal Space</h3>
+
+                            <p>
+                                Your favorites and watchlist help you
+                                create a movie collection that reflects
+                                your own interests.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CALL TO ACTION
+        ========================== -->
+
+        <section class="about-cta-section">
+
+            <div class="container">
+
+                <div class="about-cta-card">
+
+                    <div class="about-cta-glow about-cta-glow-one"></div>
+                    <div class="about-cta-glow about-cta-glow-two"></div>
+
+                    <div class="about-cta-content">
+
+                        <span class="about-cta-label">
+                            <i class="fa-solid fa-sparkles"></i>
+                            YOUR NEXT ADVENTURE AWAITS
+                        </span>
+
+                        <h2>
+                            Ready to Find Your
+                            <span>Next Favorite Movie?</span>
+                        </h2>
+
+                        <p>
+                            Explore unforgettable stories, save the movies
+                            you love, and start building your own movie
+                            universe with MovieFinder.
+                        </p>
+
+                        <div class="about-cta-actions">
+
+                            <a href="explore.html" class="about-cta-primary">
+
+                                Explore Movies
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                            <a href="favorites.html" class="about-cta-secondary">
+
+                                <i class="fa-regular fa-heart"></i>
+
+                                My Favorites
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="about-cta-visual">
+
+                        <div class="cta-film-circle">
+
+                            <i class="fa-solid fa-film"></i>
+
+                        </div>
+
+                        <span class="cta-floating-icon cta-icon-one">
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+
+                        <span class="cta-floating-icon cta-icon-two">
+                            <i class="fa-solid fa-heart"></i>
+                        </span>
+
+                        <span class="cta-floating-icon cta-icon-three">
+                            <i class="fa-solid fa-bookmark"></i>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         ORIGINAL FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="row g-5">
+
+                <div class="col-lg-5">
+
+                    <a href="index.html" class="navbar-brand footer-brand">
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-film"></i>
+                        </span>
+
+                        <span>
+                            Movie<span class="brand-highlight">Finder</span>
+                        </span>
+
+                    </a>
+
+                    <p class="footer-description">
+                        A home for every movie lover. Discover incredible
+                        stories, save your favorites, and find something
+                        worth watching.
+                    </p>
+
+                    <div class="footer-social-links">
+
+                        <a href="/about.html" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a href="about.html" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="about.html" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Discover</h5>
+
+                    <a href="index.html">Home</a>
+                    <a href="explore.html">Explore Movies</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a> 
+                </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Your Collection</h5>
+
+                    <a href="favorites.html">Favorites</a>
+                    <a href="watchlist.html">Watchlist</a>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <h5>MovieFinder</h5>
+
+                    <p class="footer-small-description">
+                        Discover your next favorite story, one movie at a time.
+                    </p>
+
+                    <a href="index.html#featured" class="footer-search-link">
+
+                        Start discovering
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; 2026 MovieFinder. All rights reserved.
+                </p>
+
+                <p>
+                    Made for movie lovers
+                    <i class="fa-solid fa-heart footer-heart"></i>
+                </p>
+
+            </div>
+
         </div>
+
     </footer>
 
-    <script src="./assets/bootstrap5/js/bootstrap.bundle.js"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Movie Storage -->
+    <script src="js/movieStorage.js"></script>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+
 </body>
+
 </html>

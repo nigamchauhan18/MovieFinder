@@ -1,182 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieFinder</title>
-    <style>
-        @import url('./assets/font-awesome/css/font-awesome.css');
-        @import url('./assets/bootstrap5/css/bootstrap.min.css');
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css');
-        @import url('./css/style.css');
-    </style>
+
+    <title>My Watchlist | MovieFinder</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+    >
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared Homepage CSS -->
+    <link rel="stylesheet" href="css/home.css">
+
+    <!-- Watchlist CSS -->
+    <link rel="stylesheet" href="css/watchlist.css">
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg shadow border-bottom border-danger finder_navbar fixed-top">
-        <div class="container-fluid px-3 px-lg-5 py-2">
-            <div class="navbar-logo">
-                <a class="navbar-brand text-white mb-0" href="index.html">
-                    <i class="fa-solid fa-clapperboard text-danger"></i>
-                    Movie<span class="text-danger fw-bold">Finder</span>
-                </a>
-            </div>
-            <div class="navbar-hamburger">
-                <button class="navbar-toggler border border-danger" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon finder_menuIcon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse navbar-menu" id="navbarSupportedContent">
-                <ul class="navbar-nav navbar-main-links mb-2 mb-lg-0">
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar navbar-expand-lg custom-navbar">
+
+        <div class="container">
+
+            <a href="index.html" class="navbar-brand">
+
+                <span class="brand-icon">
+                    <i class="fa-solid fa-film"></i>
+                </span>
+
+                <span>
+                    Movie<span class="brand-highlight">Finder</span>
+                </span>
+
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+
+                <ul class="navbar-nav mx-auto">
+
                     <li class="nav-item">
-                        <a class="nav-link active text-white" href="index.html">
-                            <i class="fa-solid fa-house finder_icon"></i> Home
+                        <a class="nav-link" href="index.html">
+                            <i class="fa-solid fa-house-user"></i>
+                            Home
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="about.html">
-                            <i class="fa-solid fa-circle-info finder_icon"></i> About
+                        <a class="nav-link" href="explore.html">
+                            <i class="fa-regular fa-compass"></i>
+                            Explore
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="movies.html">
-                            <i class="fa-solid fa-clapperboard finder_icon"></i> Movies
+                        <a class="nav-link" href="about.html">
+                            <i class="fa-solid fa-circle-info"></i>
+                            About
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="contact.html">
-                            <i class="fa-solid fa-phone finder_icon"></i> Contact
+                        <a class="nav-link" href="favorites.html">
+                            <i class="fa-regular fa-heart"></i>
+                            Favorites
+                            <span class="nav-count" id="favoriteCount">0</span>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="watchlist.html">
+                            <i class="fa-solid fa-bookmark"></i>
+                            Watchlist
+                            <span class="nav-count" id="watchlistCount">0</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" id="loginNavItem">
+
+                        <a href="login.html" class="nav-link login-btn">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Login
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item dropdown d-none" id="profileNavItem">
+
+                        <button
+                            class="nav-link profile-btn dropdown-toggle"
+                            type="button"
+                            id="profileDropdown"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            <i class="fa-solid fa-circle-user"></i>
+                            Profile
+                        </button>
+
+                        <div
+                            class="dropdown-menu dropdown-menu-end profile-menu p-3"
+                            aria-labelledby="profileDropdown"
+                        >
+
+                            <div class="profile-info">
+
+                                <div class="profile-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <h6 id="navUserName" class="mt-2 mb-1">
+                                    User Name
+                                </h6>
+
+                                <p id="navUserEmail" class="small mb-3">
+                                    user@example.com
+                                </p>
+
+                            </div>
+
+                            <hr>
+
+                            <button
+                                type="button"
+                                class="dropdown-item text-danger"
+                                id="logoutBtn"
+                            >
+                                <i class="fa-solid fa-right-from-bracket me-2"></i>
+                                Logout
+                            </button>
+
+                        </div>
+
+                    </li>
+
                 </ul>
-                <ul class="navbar-nav navbar-extra-links mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="favorites.html">
-                            <i class="fa-regular fa-heart finder_icon"></i> Favorites
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="watchlist.html">
-                            <i class="fa-solid fa-clipboard-list finder_icon text-danger"></i> Watchlist
-                        </a>
-                    </li>
-                </ul>
+
+                <div class="navbar-actions">
+
+                    <a href="index.html#featured" class="btn-primary-custom">
+                        Explore Movies
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+
+                </div>
+
             </div>
+
         </div>
+
     </nav>
 
-    <!-- Watchlist Container -->    
-    <main class="container py-5 flex-grow-1 finder-marginTop">
-        <div class="d-flex justify-content-between align-items-center mt-4 mb-5">
-            <div>
-                <h2 class="fw-bold mb-1 text-white">
-                    <i class="fa-solid fa-clipboard-list text-danger"></i> My Watchlist
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="watchlist-page">
+
+        <div class="container">
+
+            <!-- Page Heading -->
+
+            <section class="watchlist-heading">
+
+                <div class="watchlist-heading-content">
+
+                    <div class="watchlist-eyebrow">
+                        <i class="fa-solid fa-bookmark"></i>
+                        YOUR NEXT MOVIE NIGHT
+                    </div>
+
+                    <h1>
+                        My <span>Watchlist</span>
+                    </h1>
+
+                    <p>
+                        Keep track of the movies you want to watch.
+                        Save interesting stories today and decide what to watch next.
+                    </p>
+
+                </div>
+
+                <div class="watchlist-heading-icon">
+                    <i class="fa-solid fa-clapperboard"></i>
+                </div>
+
+            </section>
+
+
+            <!-- Watchlist Toolbar -->
+
+            <section class="watchlist-toolbar">
+
+                <div class="watchlist-total">
+
+                    <div class="watchlist-total-icon">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalWatchlist">0</h3>
+
+                        <p>Movies waiting to be watched</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="watchlist-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="search"
+                        id="watchlistSearch"
+                        placeholder="Search your watchlist..."
+                        aria-label="Search watchlist movies"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        id="clearSearch"
+                        aria-label="Clear search"
+                        title="Clear search"
+                    >
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- Results Heading -->
+
+            <section class="watchlist-results-header">
+
+                <div>
+
+                    <h2>Movies To Watch</h2>
+
+                    <p id="resultsDescription">
+                        All the movies you have saved for later.
+                    </p>
+
+                </div>
+
+                <div class="watchlist-results-count">
+                    <span id="visibleWatchlist">0</span> movies
+                </div>
+
+            </section>
+
+
+            <!-- Watchlist Grid -->
+
+            <section
+                class="watchlist-grid"
+                id="watchlistGrid"
+                aria-live="polite"
+            >
+                <!-- Movies will be rendered using JavaScript -->
+            </section>
+
+
+            <!-- Empty Watchlist -->
+
+            <section class="watchlist-empty" id="watchlistEmpty" hidden>
+
+                <div class="empty-bookmark-icon">
+                    <i class="fa-solid fa-bookmark"></i>
+                </div>
+
+                <h2 id="emptyTitle">
+                    Your watchlist is waiting
                 </h2>
-                <p class="text-secondary mb-0 fw-semibold">Movies you have added to your watchlist.</p>
-            </div>
-            <div>
-                <span id="watchlistCount" class="badge bg-danger fs-6 py-3 px-4">0 Movies</span>
-            </div>
+
+                <p id="emptyDescription">
+                    You haven't added any movies yet.
+                    Explore MovieFinder and save movies you want to watch later.
+                </p>
+
+                <a href="index.html#featured" class="watchlist-discover-btn">
+                    <i class="fa-solid fa-compass"></i>
+                    Explore Movies
+                </a>
+
+            </section>
+
+
+            <!-- No Search Results -->
+
+            <section class="watchlist-no-results" id="noSearchResults" hidden>
+
+                <div class="no-results-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <h3>No movies found</h3>
+
+                <p>
+                    Try a different movie title, year, or type.
+                </p>
+
+                <button type="button" id="resetSearch">
+                    Clear Search
+                </button>
+
+            </section>
+
         </div>
-        <div class="row g-3" id="watchlistContainer"></div>
-        <div id="emptyWatchlist" class="text-center py-5">
-            <div class="mb-3">
-                <i class="fa-solid fa-clipboard-list text-danger" style="font-size: 70px;"></i>
-            </div>
-            <h3 class="text-white fw-bold">No Watchlist Movies</h3>
-            <p class="text-secondary">You haven't added any movies to your watchlist yet.</p>
-            <a href="movies.html" class="btn btn-danger mt-2"><i class="fa-solid fa-clapperboard"></i> Explore Movies
-            </a>
-        </div>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="finder_footer border-top border-danger">
-        <div class="container py-4">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="finder_brand">
-                        <h3>
-                            <i class="fa-solid fa-clapperboard text-danger"></i>
-                            Movie<span class="text-danger fw-bold">Finder</span>
-                        </h3>
-                        <p>
-                            Discover movies, explore details, and find
-                            your next favorite movie in one place.
-                        </p>
-                        <div class="social-links">
-                            <a href="/" aria-label="Facebook">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
 
-                            <a href="/" aria-label="Instagram">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
+    <!-- ================= TOAST ================= -->
 
-                            <a href="/" aria-label="Twitter">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-                            <a href="/" aria-label="YouTube">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <h5>Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/movies.html">Movies</a></li>
-                        <li><a href="/contact.html">Contact US</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2">
-                    <h5>Categories</h5>
-                    <ul class="footer-links">
-                        <li><a href="/movies.html">Action</a></li>
-                        <li><a href="/movies.html">Comedy</a></li>
-                        <li><a href="/movies.html">Drama</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Stay Updated</h5>
-                    <p class="footer-text">
-                        Get the latest movie discoveries and updates.
+    <div
+        class="watchlist-toast"
+        id="watchlistToast"
+        role="status"
+        aria-live="polite"
+    >
+
+        <div class="toast-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+
+        <div class="toast-content">
+
+            <h6 id="toastTitle">Watchlist updated</h6>
+
+            <p id="toastMessage">
+                Your movie collection has been updated.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            id="closeToast"
+            aria-label="Close notification"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="row g-5">
+
+                <div class="col-lg-5">
+
+                    <a href="index.html" class="navbar-brand footer-brand">
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-film"></i>
+                        </span>
+
+                        <span>
+                            Movie<span class="brand-highlight">Finder</span>
+                        </span>
+
+                    </a>
+
+                    <p class="footer-description">
+                        A home for every movie lover. Discover incredible stories,
+                        save your favorites, and find something worth watching.
                     </p>
-                    <div class="subscribe-box">
-                        <input type="email" class="form-control" placeholder="Enter your email">
-                        <button class="btn subscribe-btn">
-                            Contact
-                        </button>
+
+                    <div class="footer-social-links">
+
+                        <a href="watchlist.html" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a href="watchlist.html" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="watchlist.html" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+
                     </div>
+
                 </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6 text-start">
-                        <p class="mb-0">
-                            <i class="fa-regular fa-copyright"></i> 2026 MovieFinder. All Rights Reserved.
-                        </p>
-                    </div>
-                    <div class="col-md-6 text-end">
-                        <a href="/">Privacy Policy</a>
-                        <span>|</span>
-                        <a href="/">Terms & Conditions</a>
-                    </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Discover</h5>
+
+                    <a href="index.html">Home</a>
+
+                    <a href="explore.html">Explore Movies</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+
                 </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Your Collection</h5>
+
+                    <a href="favorites.html">Favorites</a>
+
+                    <a href="watchlist.html">Watchlist</a>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <h5>MovieFinder</h5>
+
+                    <p class="footer-small-description">
+                        Discover your next favorite story, one movie at a time.
+                    </p>
+
+                    <a
+                        href="index.html#homeSearchInput"
+                        class="footer-search-link"
+                    >
+                        Start discovering
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
             </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; 2026 MovieFinder. All rights reserved.
+                </p>
+
+                <p>
+                    Made for movie lovers
+                    <i class="fa-solid fa-heart footer-heart"></i>
+                </p>
+
+            </div>
+
         </div>
+
     </footer>
 
-    <script src="./assets/bootstrap5/js/bootstrap.bundle.js"></script>
-    <script src="./js/watchlist.js"></script>
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/movieStorage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/watchlist.js"></script>
+
 </body>
+
 </html>

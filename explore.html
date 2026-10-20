@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MovieFinder | Explore Movies</title>
+
+    <meta
+        name="description"
+        content="Explore movies, discover popular films, filter by genre, and save your favorite movies with MovieFinder."
+    >
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+        rel="stylesheet"
+    >
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Existing Home CSS: shared navbar and footer -->
+    <link rel="stylesheet" href="css/home.css">
+
+    <!-- Explore CSS -->
+    <link rel="stylesheet" href="css/explore.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR — SAME AS HOME
+    ========================== -->
+
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+
+            <a href="index.html" class="navbar-brand">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-film"></i>
+                </span>
+
+                <span>
+                    Movie<span class="brand-highlight">Finder</span>
+                </span>
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fa-solid fa-house-user"></i>
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="explore.html">
+                            <i class="fa-regular fa-compass"></i>
+                            Explore
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            <i class="fa-solid fa-circle-info"></i>
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="favorites.html">
+                            <i class="fa-regular fa-heart"></i>
+                            Favorites
+                            <span class="nav-count" id="favoriteCount">0</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="watchlist.html">
+                            <i class="fa-solid fa-bookmark"></i>
+                            Watchlist
+                            <span class="nav-count" id="watchlistCount">0</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" id="loginNavItem">
+                        <a href="login.html" class="nav-link login-btn">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Login
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown d-none" id="profileNavItem">
+
+                        <button
+                            class="nav-link profile-btn dropdown-toggle"
+                            type="button"
+                            id="profileDropdown"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            <i class="fa-solid fa-circle-user"></i>
+                            Profile
+                        </button>
+
+                        <div
+                            class="dropdown-menu dropdown-menu-end profile-menu p-3"
+                            aria-labelledby="profileDropdown"
+                        >
+                            <div class="profile-info">
+
+                                <div class="profile-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <h6 id="navUserName" class="mt-2 mb-1">
+                                    User Name
+                                </h6>
+
+                                <p id="navUserEmail" class="small mb-3">
+                                    user@example.com
+                                </p>
+
+                            </div>
+
+                            <hr>
+
+                            <button
+                                type="button"
+                                class="dropdown-item text-danger"
+                                id="logoutBtn"
+                            >
+                                <i class="fa-solid fa-right-from-bracket me-2"></i>
+                                Logout
+                            </button>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                <div class="navbar-actions">
+                    <a href="#exploreMovies" class="btn-primary-custom">
+                        Explore Movies
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         EXPLORE HERO
+    ========================== -->
+
+    <header class="explore-hero">
+
+        <div class="explore-glow explore-glow-one"></div>
+        <div class="explore-glow explore-glow-two"></div>
+
+        <div class="container">
+
+            <div class="explore-hero-content">
+
+                <div class="explore-badge">
+                    <span class="badge-dot"></span>
+                    YOUR PERSONAL CINEMA
+                </div>
+
+                <h1>
+                    Discover Your Next
+                    <span>Favorite Movie.</span>
+                </h1>
+
+                <p>
+                    From unforgettable classics to exciting new releases,
+                    discover stories worth watching and build your own
+                    movie collection.
+                </p>
+
+                <!-- Search Form -->
+
+                <form id="exploreSearchForm" class="explore-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="movieSearchInput"
+                        placeholder="Search movies by title..."
+                        autocomplete="off"
+                        aria-label="Search movies"
+                    >
+
+                    <button type="submit">
+                        Search
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+                <div class="explore-search-hint">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    Try Interstellar, Inception, Avatar, or The Dark Knight.
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         EXPLORE MOVIES
+    ========================== -->
+
+    <main>
+
+        <section class="explore-section" id="exploreMovies">
+
+            <div class="container">
+
+                <!-- Section Heading -->
+
+                <div class="explore-section-heading">
+
+                    <div>
+                        <span class="explore-section-label">
+                            <span></span>
+                            FIND YOUR NEXT WATCH
+                        </span>
+
+                        <h2 id="exploreHeading">
+                            Explore <span>Movies.</span>
+                        </h2>
+
+                        <p id="exploreDescription">
+                            Discover popular movies selected for every kind
+                            of movie lover.
+                        </p>
+                    </div>
+
+                    <div class="explore-results-badge">
+                        <i class="fa-solid fa-film"></i>
+                        <span id="resultsCount">Loading movies...</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Filter Toolbar -->
+
+                <div class="explore-toolbar">
+
+                    <div class="explore-filter-group">
+
+                        <label for="movieGenreFilter">
+                            <i class="fa-solid fa-sliders"></i>
+                            Genre
+                        </label>
+
+                        <select id="movieGenreFilter">
+                            <option value="all">All Genres</option>
+                            <option value="Action">Action</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Crime">Crime</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Thriller">Thriller</option>
+                        </select>
+
+                    </div>
+
+                    <div class="explore-filter-group">
+
+                        <label for="sortFilter">
+                            <i class="fa-solid fa-arrow-down-wide-short"></i>
+                            Sort By
+                        </label>
+
+                        <select id="sortFilter">
+                            <option value="popular">Popular Picks</option>
+                            <option value="rating">Highest IMDb Rating</option>
+                            <option value="title">Title A–Z</option>
+                            <option value="newest">Newest Release</option>
+                            <option value="oldest">Oldest Release</option>
+                        </select>
+
+                    </div>
+
+                    <button type="button" id="resetFilters" class="reset-filter-btn">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Reset Filters
+                    </button>
+
+                </div>
+
+
+                <!-- Active Search -->
+
+                <div class="explore-active-search" id="activeSearchContainer" hidden>
+
+                    <span>
+                        Search results for:
+                        <strong id="activeSearchText"></strong>
+                    </span>
+
+                    <button type="button" id="clearSearchButton">
+                        Clear Search
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Movie Grid -->
+
+                <div class="row g-4 explore-movie-grid" id="exploreMovieGrid">
+
+                    <div class="col-12">
+                        <div class="explore-loading">
+                            <div class="explore-spinner"></div>
+                            <h3>Discovering amazing movies</h3>
+                            <p>Loading your movie collection...</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Empty State -->
+
+                <div id="emptyState" class="explore-empty-state" hidden>
+
+                    <div class="empty-state-icon">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+
+                    <h3>No movies found</h3>
+
+                    <p>
+                        Try another title or change your genre filters.
+                    </p>
+
+                    <button type="button" id="emptyResetButton">
+                        Explore All Movies
+                    </button>
+
+                </div>
+
+
+                <!-- Load More -->
+
+                <div class="explore-load-more-wrap">
+
+                    <button
+                        type="button"
+                        id="loadMoreButton"
+                        class="explore-load-more"
+                    >
+                        Load More Movies
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EXPLORE CTA
+        ========================== -->
+
+        <section class="explore-cta-section">
+
+            <div class="container">
+
+                <div class="explore-cta">
+
+                    <div class="explore-cta-decoration"></div>
+
+                    <div class="explore-cta-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <div class="explore-cta-content">
+
+                        <span>YOUR MOVIE COLLECTION</span>
+
+                        <h2>
+                            Found Something
+                            <span>You Love?</span>
+                        </h2>
+
+                        <p>
+                            Save your favorite films and create a personal
+                            watchlist for your next movie night.
+                        </p>
+
+                    </div>
+
+                    <div class="explore-cta-actions">
+
+                        <a href="favorites.html">
+                            <i class="fa-regular fa-heart"></i>
+                            Favorites
+                        </a>
+
+                        <a href="watchlist.html">
+                            <i class="fa-solid fa-bookmark"></i>
+                            Watchlist
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER — SAME AS HOME
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="row g-5">
+
+                <div class="col-lg-5">
+
+                    <a href="index.html" class="navbar-brand footer-brand">
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-film"></i>
+                        </span>
+
+                        <span>
+                            Movie<span class="brand-highlight">Finder</span>
+                        </span>
+
+                    </a>
+
+                    <p class="footer-description">
+                        A home for every movie lover. Discover incredible
+                        stories, save your favorites, and find something
+                        worth watching.
+                    </p>
+
+                    <div class="footer-social-links">
+
+                        <a href="/explore.html" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a href="explore.html" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="explore.html" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Discover</h5>
+
+                    <a href="index.html">Home</a>
+                    <a href="explore.html">Explore Movies</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+
+                </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Your Collection</h5>
+
+                    <a href="favorites.html">Favorites</a>
+                    <a href="watchlist.html">Watchlist</a>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <h5>MovieFinder</h5>
+
+                    <p class="footer-small-description">
+                        Discover your next favorite story, one movie at a time.
+                    </p>
+
+                    <a href="#exploreMovies" class="footer-search-link">
+                        Start discovering
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; 2026 MovieFinder. All rights reserved.
+                </p>
+
+                <p>
+                    Made for movie lovers
+                    <i class="fa-solid fa-heart footer-heart"></i>
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         MOVIE DETAILS MODAL
+    ========================== -->
+
+    <div
+        class="modal fade"
+        id="movieModal"
+        tabindex="-1"
+        aria-labelledby="movieModalTitle"
+        aria-hidden="true"
+    >
+
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+
+            <div class="modal-content explore-modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="movieModalTitle">
+                        Movie Details
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+
+                </div>
+
+                <div class="modal-body" id="movieModalBody"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+        <div
+            id="appToast"
+            class="toast app-toast"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+        >
+
+            <div class="toast-body">
+
+                <i class="fa-solid fa-circle-check toast-icon"></i>
+
+                <span id="toastMessage">Movie saved successfully.</span>
+
+                <button
+                    type="button"
+                    class="btn-close ms-auto"
+                    data-bs-dismiss="toast"
+                    aria-label="Close"
+                ></button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Scripts -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/movieStorage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/explore.js"></script>
+
+</body>
+</html>
