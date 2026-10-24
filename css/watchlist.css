@@ -1,7 +1,3 @@
-/* =========================================
-   MOVIEFINDER — WATCHLIST PAGE
-========================================= */
-
 :root {
     --wl-bg-primary: #0b0b14;
     --wl-bg-secondary: #11111e;
@@ -16,21 +12,14 @@
     --wl-border: rgba(255, 255, 255, 0.09);
 }
 
-
-/* =========================================
-   PAGE
-========================================= */
-
 .watchlist-page {
     min-height: 650px;
     padding: 65px 0 90px;
 
     background:
-        radial-gradient(
-            ellipse at 90% 0%,
+        radial-gradient(ellipse at 90% 0%,
             rgba(139, 92, 246, 0.10),
-            transparent 35%
-        ),
+            transparent 35%),
         var(--wl-bg-primary);
 
     color: var(--wl-text-primary);
@@ -40,11 +29,6 @@
 .watchlist-page * {
     box-sizing: border-box;
 }
-
-
-/* =========================================
-   HEADING
-========================================= */
 
 .watchlist-heading {
     display: flex;
@@ -96,7 +80,7 @@
     color: var(--wl-accent);
 }
 
-.watchlist-heading-content > p {
+.watchlist-heading-content>p {
     max-width: 620px;
 
     margin: 0;
@@ -121,11 +105,9 @@
     border-radius: 35px;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(139, 92, 246, 0.18),
-            rgba(139, 92, 246, 0.04)
-        );
+            rgba(139, 92, 246, 0.04));
 
     transform: rotate(-5deg);
 }
@@ -134,11 +116,6 @@
     color: var(--wl-accent);
     font-size: 52px;
 }
-
-
-/* =========================================
-   TOOLBAR
-========================================= */
 
 .watchlist-toolbar {
     display: flex;
@@ -198,11 +175,6 @@
     font-size: 12px;
 }
 
-
-/* =========================================
-   SEARCH
-========================================= */
-
 .watchlist-search {
     display: flex;
     align-items: center;
@@ -227,7 +199,7 @@
         0 0 0 3px rgba(139, 92, 246, 0.12);
 }
 
-.watchlist-search > i {
+.watchlist-search>i {
     padding-left: 16px;
 
     color: var(--wl-text-secondary);
@@ -289,11 +261,6 @@
     color: white;
 }
 
-
-/* =========================================
-   RESULTS HEADER
-========================================= */
-
 .watchlist-results-header {
     display: flex;
     align-items: flex-end;
@@ -344,11 +311,6 @@
     font-weight: 800;
 }
 
-
-/* =========================================
-   MOVIE GRID
-========================================= */
-
 .watchlist-grid {
     display: grid;
 
@@ -356,11 +318,6 @@
 
     gap: 24px;
 }
-
-
-/* =========================================
-   MOVIE CARD
-========================================= */
 
 .watchlist-card {
     min-width: 0;
@@ -387,11 +344,6 @@
     box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
 }
 
-
-/* =========================================
-   POSTER
-========================================= */
-
 .watchlist-poster-wrapper {
     position: relative;
 
@@ -417,9 +369,6 @@
     transform: scale(1.045);
 }
 
-
-/* Poster fallback */
-
 .watchlist-poster-fallback {
     display: flex;
     flex-direction: column;
@@ -434,11 +383,9 @@
     padding: 15px;
 
     background:
-        radial-gradient(
-            circle at top,
+        radial-gradient(circle at top,
             rgba(139, 92, 246, 0.2),
-            transparent 65%
-        ),
+            transparent 65%),
         #171727;
 
     color: var(--wl-text-secondary);
@@ -455,9 +402,6 @@
     line-height: 1.5;
 }
 
-
-/* Poster overlay */
-
 .watchlist-poster-overlay {
     position: absolute;
     inset: 0;
@@ -468,11 +412,9 @@
 
     padding: 13px;
 
-    background: linear-gradient(
-        to top,
-        rgba(7, 7, 15, 0.75),
-        transparent 45%
-    );
+    background: linear-gradient(to top,
+            rgba(7, 7, 15, 0.75),
+            transparent 45%);
 
     pointer-events: none;
 }
@@ -497,11 +439,6 @@
 
     backdrop-filter: blur(8px);
 }
-
-
-/* =========================================
-   CARD CONTENT
-========================================= */
 
 .watchlist-card-body {
     padding: 16px 14px 14px;
@@ -552,11 +489,6 @@
     text-transform: capitalize;
 }
 
-
-/* =========================================
-   ACTION BUTTONS
-========================================= */
-
 .watchlist-actions {
     display: flex;
     flex-direction: column;
@@ -591,9 +523,6 @@
         color 0.25s ease;
 }
 
-
-/* Add to favorites */
-
 .add-favorite-btn {
     border-color: rgba(139, 92, 246, 0.22);
 
@@ -622,9 +551,6 @@
     background: rgba(255, 91, 128, 0.15);
 }
 
-
-/* Remove from watchlist */
-
 .remove-watchlist-btn {
     border-color: rgba(255, 255, 255, 0.08);
 
@@ -645,11 +571,6 @@
     opacity: 0.6;
     cursor: wait;
 }
-
-
-/* =========================================
-   EMPTY STATE
-========================================= */
 
 .watchlist-empty,
 .watchlist-no-results {
@@ -699,8 +620,8 @@
     font-weight: 800;
 }
 
-.watchlist-empty > p,
-.watchlist-no-results > p {
+.watchlist-empty>p,
+.watchlist-no-results>p {
     max-width: 450px;
 
     margin: 0 auto 25px;
@@ -710,11 +631,6 @@
     font-size: 13px;
     line-height: 1.9;
 }
-
-
-/* =========================================
-   DISCOVER BUTTON
-========================================= */
 
 .watchlist-discover-btn {
     display: inline-flex;
@@ -750,11 +666,6 @@
     transform: translateY(-2px);
 }
 
-
-/* =========================================
-   NO RESULTS BUTTON
-========================================= */
-
 .watchlist-no-results button {
     padding: 10px 18px;
 
@@ -777,11 +688,6 @@
 .watchlist-no-results button:hover {
     background: var(--wl-accent);
 }
-
-
-/* =========================================
-   TOAST
-========================================= */
 
 .watchlist-toast {
     position: fixed;
@@ -866,7 +772,7 @@
     line-height: 1.6;
 }
 
-.watchlist-toast > button {
+.watchlist-toast>button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -886,15 +792,10 @@
     cursor: pointer;
 }
 
-.watchlist-toast > button:hover {
+.watchlist-toast>button:hover {
     background: rgba(255, 255, 255, 0.08);
     color: white;
 }
-
-
-/* =========================================
-   ANIMATION
-========================================= */
 
 @keyframes watchlistCardAppear {
     from {
@@ -907,11 +808,6 @@
         transform: translateY(0);
     }
 }
-
-
-/* =========================================
-   TABLET
-========================================= */
 
 @media (max-width: 1199px) {
     .watchlist-grid {
@@ -928,11 +824,6 @@
         font-size: 43px;
     }
 }
-
-
-/* =========================================
-   SMALL TABLET
-========================================= */
 
 @media (max-width: 991px) {
     .watchlist-page {
@@ -964,11 +855,6 @@
     }
 }
 
-
-/* =========================================
-   MOBILE
-========================================= */
-
 @media (max-width: 767px) {
     .watchlist-page {
         min-height: 500px;
@@ -985,7 +871,7 @@
         letter-spacing: -1.3px;
     }
 
-    .watchlist-heading-content > p {
+    .watchlist-heading-content>p {
         font-size: 13px;
         line-height: 1.8;
     }
@@ -1081,8 +967,8 @@
         font-size: 20px;
     }
 
-    .watchlist-empty > p,
-    .watchlist-no-results > p {
+    .watchlist-empty>p,
+    .watchlist-no-results>p {
         font-size: 12px;
     }
 
@@ -1091,11 +977,6 @@
         bottom: 15px;
     }
 }
-
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
 
 @media (max-width: 380px) {
     .watchlist-grid {
@@ -1124,12 +1005,8 @@
     }
 }
 
-
-/* =========================================
-   REDUCED MOTION
-========================================= */
-
 @media (prefers-reduced-motion: reduce) {
+
     .watchlist-card,
     .watchlist-poster,
     .watchlist-toast,

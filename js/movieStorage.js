@@ -1,8 +1,3 @@
-/* =========================================
-   MOVIEFINDER — MOVIE STORAGE
-   Favorites + Watchlist
-========================================= */
-
 (function () {
     "use strict";
 
@@ -124,7 +119,6 @@
                 }
             })
         );
-
         return true;
     }
 
@@ -164,28 +158,17 @@
     function isInWatchlist(imdbID) {
         return containsMovie(WATCHLIST_KEY, imdbID);
     }
-
-    /*
-       Public API
-       Other JavaScript files can use MovieStorage.
-    */
-
+    
     window.MovieStorage = {
         getFavorites: () => getMovies(FAVORITES_KEY),
         getWatchlist: () => getMovies(WATCHLIST_KEY),
-
         addFavorite,
         addWatchlist,
-
         removeFavorite,
         removeWatchlist,
-
         isFavorite,
         isInWatchlist,
-
         updateCounts
     };
-
     document.addEventListener("DOMContentLoaded", updateCounts);
-
 })();

@@ -1,7 +1,3 @@
-// =====================================
-// MovieFinder Signup
-// =====================================
-
 const USERS_KEY = "movieFinderUsers";
 
 const signupForm = document.getElementById("signupForm");
@@ -23,7 +19,6 @@ const termsError = document.getElementById("termsError");
 
 const signupSubmit = signupForm.querySelector('button[type="submit"]');
 
-// Get registered demo accounts
 function getRegisteredUsers() {
     try {
         const users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
@@ -33,20 +28,17 @@ function getRegisteredUsers() {
     }
 }
 
-// Display field errors
 function showFieldError(input, errorElement, message) {
     errorElement.textContent = message;
     input.classList.add("invalid");
     input.classList.remove("valid");
 }
 
-// Clear field errors
 function clearFieldError(input, errorElement) {
     errorElement.textContent = "";
     input.classList.remove("invalid");
 }
 
-// Validate name
 function validateName() {
     const name = nameInput.value.trim();
 
@@ -72,7 +64,6 @@ function validateName() {
     return true;
 }
 
-// Validate email
 function validateEmail() {
     const email = emailInput.value.trim().toLowerCase();
 
@@ -106,7 +97,6 @@ function validateEmail() {
     return true;
 }
 
-// Validate password
 function validatePassword() {
     const password = passwordInput.value;
 
@@ -132,7 +122,6 @@ function validatePassword() {
     return true;
 }
 
-// Validate confirm password
 function validateConfirmPassword() {
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
@@ -159,7 +148,6 @@ function validateConfirmPassword() {
     return true;
 }
 
-// Validate terms
 function validateTerms() {
     if (!termsCheckbox.checked) {
         termsError.textContent =
@@ -171,11 +159,9 @@ function validateTerms() {
     return true;
 }
 
-// Validate fields as the user types
 nameInput.addEventListener("input", validateName);
 
 emailInput.addEventListener("input", function () {
-    // Avoid showing the duplicate-email error before the user enters an email.
     if (emailInput.value.trim()) {
         validateEmail();
     } else {
@@ -195,7 +181,6 @@ confirmPasswordInput.addEventListener("input", validateConfirmPassword);
 
 termsCheckbox.addEventListener("change", validateTerms);
 
-// Show/hide password buttons
 document.querySelectorAll(".signup-password-toggle").forEach(button => {
     button.addEventListener("click", function () {
         const targetId = this.dataset.target;
@@ -214,7 +199,6 @@ document.querySelectorAll(".signup-password-toggle").forEach(button => {
     });
 });
 
-// Submit signup form
 signupForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -245,7 +229,6 @@ signupForm.addEventListener("submit", function (event) {
 
     const email = emailInput.value.trim().toLowerCase();
 
-    // Check again immediately before saving
     if (users.some(user => user.email.toLowerCase() === email)) {
         showFieldError(
             emailInput,
@@ -263,7 +246,6 @@ signupForm.addEventListener("submit", function (event) {
         name: nameInput.value.trim(),
         email: email,
 
-        // Demo only: never store real passwords in localStorage.
         password: passwordInput.value
     };
 
@@ -278,21 +260,16 @@ signupForm.addEventListener("submit", function (event) {
         signupError.classList.add("show");
         return;
     }
-
-    signupSuccess.textContent =
-        "Account created successfully! Redirecting you to Login...";
+    signupSuccess.textContent = "Account created successfully! Redirecting you to Login...";
 
     signupSuccess.classList.add("show");
-
     signupSubmit.disabled = true;
 
-    // Registration does not automatically log the user in.
     setTimeout(() => {
         window.location.href = "login.html";
     }, 1500);
 });
 
-// Terms and Conditions modal
 const termsLink = document.getElementById("termsLink");
 
 if (termsLink) {

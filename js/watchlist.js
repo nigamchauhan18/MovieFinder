@@ -1,42 +1,21 @@
-/* =========================================
-   MOVIEFINDER — WATCHLIST PAGE
-========================================= */
-
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
-
-    /* =========================================
-       ELEMENTS
-    ========================================= */
-
     const watchlistGrid = document.getElementById("watchlistGrid");
-
     const totalWatchlist = document.getElementById("totalWatchlist");
     const visibleWatchlist = document.getElementById("visibleWatchlist");
-
     const watchlistSearch = document.getElementById("watchlistSearch");
     const clearSearch = document.getElementById("clearSearch");
-
     const watchlistEmpty = document.getElementById("watchlistEmpty");
     const noSearchResults = document.getElementById("noSearchResults");
-
     const emptyTitle = document.getElementById("emptyTitle");
     const emptyDescription = document.getElementById("emptyDescription");
-
     const resultsDescription = document.getElementById("resultsDescription");
-
     const resetSearch = document.getElementById("resetSearch");
-
     const watchlistToast = document.getElementById("watchlistToast");
     const toastTitle = document.getElementById("toastTitle");
     const toastMessage = document.getElementById("toastMessage");
     const closeToast = document.getElementById("closeToast");
-
-
-    /* =========================================
-       STORAGE CHECK
-    ========================================= */
 
     if (
         !window.MovieStorage ||

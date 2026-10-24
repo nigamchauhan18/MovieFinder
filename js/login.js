@@ -1,7 +1,3 @@
-// =====================================
-// MovieFinder Login
-// =====================================
-
 const USERS_KEY = "movieFinderUsers";
 const USER_KEY = "movieFinderUser";
 const LOGIN_KEY = "movieFinderLoggedIn";
@@ -14,7 +10,6 @@ const nameInput = document.getElementById("userName");
 
 const loginError = document.getElementById("loginError");
 
-// Read registered demo accounts
 function getRegisteredUsers() {
     try {
         const users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
@@ -24,12 +19,10 @@ function getRegisteredUsers() {
     }
 }
 
-// If already logged in, return to homepage
 if (localStorage.getItem(LOGIN_KEY) === "true") {
     window.location.replace("index.html");
 }
 
-// Handle login
 loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -47,7 +40,6 @@ loginForm.addEventListener("submit", function (event) {
 
     const users = getRegisteredUsers();
 
-    // Find the registered account
     const user = users.find(
         account =>
             account.email.toLowerCase() === email &&
@@ -62,8 +54,6 @@ loginForm.addEventListener("submit", function (event) {
         return;
     }
 
-    // Save only profile information in the active login session.
-    // The demo password remains in the registered-users array.
     const loggedInUser = {
         id: user.id,
         name: user.name,
@@ -76,7 +66,6 @@ loginForm.addEventListener("submit", function (event) {
     window.location.href = "index.html";
 });
 
-// Show/hide password
 const togglePassword = document.getElementById("togglePassword");
 
 if (togglePassword) {

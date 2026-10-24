@@ -1,13 +1,24 @@
-/* =========================================
-   MOVIEFINDER — HOME PAGE JAVASCRIPT
-========================================= */
+async function fetchData() {
+    const url = 'https://www.omdbapi.com/?apikey=debaf989&t=The Avengers';
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+// fetchData();
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
-
-    /* =====================================
-       1. CONFIGURATION
-    ===================================== */
 
     const API_KEY = "debaf989";
     const API_URL = "https://www.omdbapi.com/";
@@ -33,19 +44,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const movieModal = movieModalElement
         ? new bootstrap.Modal(movieModalElement)
-        : null;
+        : null;    
 
     const appToast = appToastElement
-        ? new bootstrap.Toast(appToastElement, {
-            delay: 2500
-        })
+        ? new bootstrap.Toast(appToastElement, { delay: 2500 })
         : null;
-
-
-    /* =====================================
-       2. APPLICATION STATE
-    ===================================== */
-
+        
+    // 2. APPLICATION STATE
     let currentQuery = "Avengers";
     let currentPage = 1;
     let totalResults = 0;
@@ -54,12 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let isSearchMode = false;
 
     const movieDetailsCache = new Map();
-
-
-    /* =====================================
-       3. API REQUESTS
-    ===================================== */
-
+    
+    // 3. API REQUESTS
     async function fetchFromOMDb(params) {
         const query = new URLSearchParams({
             apikey: API_KEY,
@@ -81,10 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 data.Error || "No movie information was found."
             );
         }
-
         return data;
     }
-
 
     async function searchMovies(query, page = 1) {
         return fetchFromOMDb({
@@ -93,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
             type: "movie"
         });
     }
-
 
     async function getMovieDetails(imdbID) {
         if (movieDetailsCache.has(imdbID)) {
@@ -104,32 +102,21 @@ document.addEventListener("DOMContentLoaded", function () {
             i: imdbID,
             plot: "full"
         });
-
         movieDetailsCache.set(imdbID, details);
-
         return details;
     }
-
-
-    /* =====================================
-       4. TOAST NOTIFICATIONS
-    ===================================== */
-
+    
+    // 4. TOAST NOTIFICATIONS
     function showToast(message) {
         if (!appToast || !toastMessage) {
             console.log(message);
             return;
         }
-
         toastMessage.textContent = message;
         appToast.show();
     }
-
-
-    /* =====================================
-       5. HTML HELPERS
-    ===================================== */
-
+    
+    // 5. HTML HELPERS
     function escapeHTML(value) {
         return String(value ?? "").replace(/[&<>"']/g, function (char) {
             const entities = {
@@ -144,23 +131,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
     function validPoster(poster) {
         return poster && poster !== "N/A";
     }
-
 
     function getPosterHTML(movie) {
         if (validPoster(movie.Poster)) {
             const posterURL = escapeHTML(movie.Poster);
 
             return `
-                <img
-                    class="movie-poster"
-                    src="${posterURL}"
-                    alt="${escapeHTML(movie.Title)} poster"
-                    loading="lazy"
-                >
+                <img class="movie-poster" src="${posterURL}" alt="${escapeHTML(movie.Title)} poster" loading="lazy">
             `;
         }
 
@@ -171,59 +151,41 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     }
 
-
     function getRating(details) {
         if (!details) {
             return "—";
         }
-
         const rating = details.imdbRating;
-
         if (!rating || rating === "N/A") {
             return "—";
         }
-
         return rating;
     }
-
-
-    /* =====================================
-       6. LOADING AND ERROR STATES
-    ===================================== */
-
+    
+    // 6. LOADING AND ERROR STATES
     function showLoading(message = "Discovering amazing movies...") {
         featuredMovies.innerHTML = `
             <div class="col-12">
                 <div class="loading-container">
-
                     <div class="loading-spinner"></div>
-
                     <h3>${escapeHTML(message)}</h3>
-
                     <p>
                         Just a moment while we find something great.
                     </p>
-
                 </div>
             </div>
         `;
     }
 
-
     function showError(message) {
         featuredMovies.innerHTML = `
             <div class="col-12">
-
                 <div class="error-state">
-
                     <div class="error-state-icon">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
-
                     <h3>We couldn't load the movies</h3>
-
                     <p>${escapeHTML(message)}</p>
-
                     <button
                         type="button"
                         class="retry-btn"
@@ -232,12 +194,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         <i class="fa-solid fa-rotate-right me-2"></i>
                         Try Again
                     </button>
-
                 </div>
-
             </div>
         `;
-
         const retryButton = document.getElementById("retryMoviesButton");
 
         if (retryButton) {
@@ -247,56 +206,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
     function showEmptyState(query) {
         featuredMovies.innerHTML = `
             <div class="col-12">
-
                 <div class="empty-state">
-
                     <div class="empty-state-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-
                     <h3>No movies found</h3>
-
                     <p>
                         We couldn't find movies matching
                         "${escapeHTML(query)}".
                         Try a different title or check the spelling.
                     </p>
-
                 </div>
-
             </div>
         `;
     }
-
-
-    /* =====================================
-       7. MOVIE CARD TEMPLATE
-    ===================================== */
-
+    
+    // 7. MOVIE CARD TEMPLATE
     function createMovieCard(movie) {
         const favorite = MovieStorage.isFavorite(movie.imdbID);
         const watchlisted = MovieStorage.isInWatchlist(movie.imdbID);
-
         return `
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 movie-column">
-
                 <article class="movie-card" data-imdb-id="${escapeHTML(movie.imdbID)}">
-
                     <div class="movie-poster-wrapper">
-
                         ${getPosterHTML(movie)}
-
                         <span class="movie-rating" data-rating-for="${escapeHTML(movie.imdbID)}">
                             <i class="fa-solid fa-star"></i>
                             <span>—</span>
                         </span>
-
                         <div class="movie-card-actions">
-
                             <button
                                 type="button"
                                 class="movie-action-btn favorite-action ${favorite ? "is-active" : ""}"
@@ -304,11 +245,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                 data-imdb-id="${escapeHTML(movie.imdbID)}"
                                 aria-label="${favorite ? "Remove from favorites" : "Add to favorites"}"
                                 title="${favorite ? "Remove from favorites" : "Add to favorites"}"
-                                aria-pressed="${favorite}"
-                            >
+                                aria-pressed="${favorite}">
                                 <i class="${favorite ? "fa-solid" : "fa-regular"} fa-heart"></i>
                             </button>
-
                             <button
                                 type="button"
                                 class="movie-action-btn watchlist-action ${watchlisted ? "is-active" : ""}"
@@ -320,17 +259,12 @@ document.addEventListener("DOMContentLoaded", function () {
                             >
                                 <i class="fa-solid fa-bookmark"></i>
                             </button>
-
                         </div>
-
                     </div>
-
                     <div class="movie-card-body">
-
                         <span class="movie-year">
                             ${escapeHTML(movie.Year || "Year unavailable")}
                         </span>
-
                         <a
                             href="#movieModal"
                             class="movie-title"
@@ -339,13 +273,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         >
                             ${escapeHTML(movie.Title)}
                         </a>
-
                         <div class="movie-card-footer">
-
                             <span class="movie-type">
                                 ${escapeHTML(movie.Type || "Movie")}
                             </span>
-
                             <button
                                 type="button"
                                 class="movie-details-btn"
@@ -355,28 +286,15 @@ document.addEventListener("DOMContentLoaded", function () {
                                 Details
                                 <i class="fa-solid fa-arrow-right"></i>
                             </button>
-
                         </div>
-
                     </div>
-
                 </article>
-
             </div>
         `;
     }
 
-
-    /* =====================================
-       8. LOAD RATINGS
-    ===================================== */
-
+    // 8. LOAD RATINGS
     async function loadRatings(movies) {
-        /*
-           OMDb search results don't include IMDb ratings.
-           Fetch individual details for a small batch of movies.
-        */
-
         const batch = movies.slice(0, 6);
 
         await Promise.allSettled(
@@ -391,13 +309,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 try {
                     const details = await getMovieDetails(movie.imdbID);
-
                     if (!ratingElement.isConnected) {
                         return;
                     }
-
                     const ratingText = ratingElement.querySelector("span");
-
                     if (ratingText) {
                         ratingText.textContent = getRating(details);
                     }
@@ -412,11 +327,8 @@ document.addEventListener("DOMContentLoaded", function () {
             })
         );
     }
-
-
-    /* =====================================
-       9. RENDER MOVIES
-    ===================================== */
+    
+    // 9. RENDER MOVIES
 
     function renderMovies(movies, append = false) {
         if (!append) {
@@ -825,35 +737,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         movieModalTitle.textContent = "Loading Movie Details";
-
         movieModalBody.innerHTML = `
             <div class="loading-container">
-
                 <div class="loading-spinner"></div>
-
                 <h3>Loading movie details</h3>
-
                 <p>Gathering information about this movie.</p>
 
             </div>
         `;
-
         movieModal.show();
 
         try {
             const movie = await getMovieDetails(imdbID);
-
             movieModalTitle.textContent = movie.Title || "Movie Details";
-
             movieModalBody.innerHTML = createMovieDetailsHTML(movie);
-
             updateModalActionButtons(imdbID);
-
         } catch (error) {
             console.error("Could not load movie details:", error);
-
             movieModalTitle.textContent = "Movie Details";
-
             movieModalBody.innerHTML = `
                 <div class="error-state">
 
@@ -957,7 +858,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             <i class="fa-regular fa-heart"></i>
                             Add to Favorites
                         </button>
-
                         <button
                             type="button"
                             class="modal-action-btn"
@@ -967,56 +867,39 @@ document.addEventListener("DOMContentLoaded", function () {
                             <i class="fa-solid fa-bookmark"></i>
                             Add to Watchlist
                         </button>
-
                     </div>
-
                 </div>
-
             </div>
         `;
     }
-
-
-    /* =====================================
-       20. MODAL ACTION BUTTONS
-    ===================================== */
 
     function updateModalActionButtons(imdbID) {
         if (!movieModalBody) {
             return;
         }
-
         const favoriteButton = movieModalBody.querySelector(
             '[data-modal-action="favorite"]'
         );
-
         const watchlistButton = movieModalBody.querySelector(
             '[data-modal-action="watchlist"]'
         );
-
         if (favoriteButton) {
             const favorite = MovieStorage.isFavorite(imdbID);
-
             favoriteButton.classList.toggle("is-active", favorite);
-
             favoriteButton.innerHTML = `
                 <i class="${favorite ? "fa-solid" : "fa-regular"} fa-heart"></i>
                 ${favorite ? "Remove Favorite" : "Add to Favorites"}
             `;
         }
-
         if (watchlistButton) {
             const watchlisted = MovieStorage.isInWatchlist(imdbID);
-
             watchlistButton.classList.toggle("is-active", watchlisted);
-
             watchlistButton.innerHTML = `
                 <i class="fa-solid fa-bookmark"></i>
                 ${watchlisted ? "Remove from Watchlist" : "Add to Watchlist"}
             `;
         }
     }
-
 
     if (movieModalBody) {
         movieModalBody.addEventListener("click", function (event) {
@@ -1025,7 +908,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!button) {
                 return;
             }
-
             const action = button.dataset.modalAction;
             const imdbID = button.dataset.imdbId;
 
@@ -1060,26 +942,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    /* =====================================
-       21. SYNC STORAGE CHANGES
-    ===================================== */
-
     document.addEventListener("movieStorageChanged", function (event) {
         const detail = event.detail;
-
         if (detail && detail.imdbID) {
             updateMovieActionButtons(detail.imdbID);
         }
     });
 
-
-    /* =====================================
-       22. INITIALIZE HOME PAGE
-    ===================================== */
-
     MovieStorage.updateCounts();
-
     loadMovies("Avengers", 1, false);
-
 });

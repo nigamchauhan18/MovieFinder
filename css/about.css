@@ -1,7 +1,3 @@
-/* ========================================
-   MOVIEFINDER ABOUT PAGE
-======================================== */
-
 :root {
     --about-bg: #0b0b14;
     --about-bg-secondary: #11111e;
@@ -13,11 +9,6 @@
     --about-border: rgba(255, 255, 255, 0.09);
     --about-purple-glow: rgba(139, 92, 246, 0.16);
 }
-
-
-/* ========================================
-   GENERAL
-======================================== */
 
 body {
     background: var(--about-bg);
@@ -45,25 +36,12 @@ body {
     z-index: 2;
 }
 
-
-/* ========================================
-   ABOUT HERO
-======================================== */
-
 .about-hero {
     min-height: 650px;
     padding: 100px 0 115px;
     background:
-        radial-gradient(
-            ellipse at 10% 20%,
-            rgba(139, 92, 246, 0.12),
-            transparent 38%
-        ),
-        radial-gradient(
-            ellipse at 90% 70%,
-            rgba(79, 70, 229, 0.09),
-            transparent 35%
-        ),
+        radial-gradient(ellipse at 10% 20%, rgba(139, 92, 246, 0.12), transparent 38%),
+        radial-gradient(ellipse at 90% 70%, rgba(79, 70, 229, 0.09), transparent 35%),
         var(--about-bg);
 }
 
@@ -165,11 +143,7 @@ body {
 
 .about-primary-btn {
     color: #fff;
-    background: linear-gradient(
-        135deg,
-        var(--about-accent),
-        var(--about-accent-hover)
-    );
+    background: linear-gradient(135deg, var(--about-accent), var(--about-accent-hover));
     box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
 }
 
@@ -233,11 +207,6 @@ body {
     color: var(--about-muted);
     font-size: 10px;
 }
-
-
-/* ========================================
-   ABOUT HERO VISUAL
-======================================== */
 
 .about-visual {
     position: relative;
@@ -330,17 +299,8 @@ body {
     border: 1px solid rgba(167, 139, 250, 0.18);
     border-radius: 15px;
     background:
-        linear-gradient(
-            145deg,
-            rgba(124, 58, 237, 0.28),
-            transparent 55%
-        ),
-        linear-gradient(
-            35deg,
-            #101020,
-            #22163b 55%,
-            #121224
-        );
+        linear-gradient(145deg, rgba(124, 58, 237, 0.28), transparent 55%),
+        linear-gradient(35deg, #101020, #22163b 55%, #121224);
 }
 
 .about-poster-glow {
@@ -544,8 +504,7 @@ body {
 }
 
 @keyframes aboutFloat {
-    0%,
-    100% {
+    0%, 100% {
         transform: translateY(0);
     }
 
@@ -553,11 +512,6 @@ body {
         transform: translateY(-8px);
     }
 }
-
-
-/* ========================================
-   OUR STORY
-======================================== */
 
 .our-story-section {
     padding: 105px 0;
@@ -618,11 +572,7 @@ body {
     justify-content: center;
     border-radius: 15px;
     background:
-        linear-gradient(
-            145deg,
-            rgba(139, 92, 246, 0.28),
-            transparent 65%
-        ),
+        linear-gradient(145deg, rgba(139, 92, 246, 0.28), transparent 65%),
         #101020;
 }
 
@@ -795,11 +745,6 @@ body {
     line-height: 1.9;
 }
 
-
-/* ========================================
-   MISSION SECTION
-======================================== */
-
 .mission-section {
     padding: 95px 0;
     background: var(--about-bg);
@@ -816,12 +761,7 @@ body {
     padding: 55px 65px;
     border: 1px solid rgba(139, 92, 246, 0.24);
     border-radius: 24px;
-    background:
-        linear-gradient(
-            120deg,
-            rgba(139, 92, 246, 0.13),
-            rgba(23, 23, 39, 0.95) 65%
-        );
+    background: linear-gradient(120deg, rgba(139, 92, 246, 0.13), rgba(23, 23, 39, 0.95) 65%);
 }
 
 .mission-decoration {
@@ -977,11 +917,6 @@ body {
     right: 50px;
 }
 
-
-/* ========================================
-   WHAT WE OFFER
-======================================== */
-
 .what-we-offer-section {
     padding: 105px 0;
     background: var(--about-bg-secondary);
@@ -1026,10 +961,7 @@ body {
     border: 1px solid var(--about-border);
     border-radius: 17px;
     background: var(--about-card);
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-feature-card:hover {
@@ -1122,11 +1054,6 @@ body {
     color: #ddd6fe;
 }
 
-
-/* ========================================
-   VALUES
-======================================== */
-
 .values-section {
     padding: 105px 0;
     background: var(--about-bg);
@@ -1177,11 +1104,6 @@ body {
     line-height: 1.9;
 }
 
-
-/* ========================================
-   CALL TO ACTION
-======================================== */
-
 .about-cta-section {
     padding: 30px 0 110px;
     background: var(--about-bg);
@@ -1198,12 +1120,7 @@ body {
     padding: 55px 60px;
     border: 1px solid rgba(139, 92, 246, 0.28);
     border-radius: 23px;
-    background:
-        linear-gradient(
-            120deg,
-            rgba(139, 92, 246, 0.14),
-            rgba(23, 23, 39, 0.95) 70%
-        );
+    background: linear-gradient(120deg, rgba(139, 92, 246, 0.14), rgba(23, 23, 39, 0.95) 70%);
 }
 
 .about-cta-glow {
@@ -1369,13 +1286,7 @@ body {
     animation-delay: 2s;
 }
 
-
-/* ========================================
-   RESPONSIVE DESIGN
-======================================== */
-
 @media (max-width: 1199px) {
-
     .about-hero {
         padding: 80px 0 90px;
     }
@@ -1403,12 +1314,9 @@ body {
     .about-cta-card {
         padding: 45px;
     }
-
 }
 
-
 @media (max-width: 991px) {
-
     .about-hero {
         padding: 75px 0;
     }
@@ -1491,12 +1399,9 @@ body {
     .about-cta-visual {
         min-height: 200px;
     }
-
 }
 
-
 @media (max-width: 767px) {
-
     .about-hero {
         padding: 65px 0;
     }
@@ -1640,12 +1545,9 @@ body {
     .about-cta-content h2 {
         font-size: 32px;
     }
-
 }
 
-
 @media (max-width: 480px) {
-
     .about-hero-content h1 {
         font-size: 36px;
     }
@@ -1738,16 +1640,9 @@ body {
     .about-cta-secondary {
         width: 100%;
     }
-
 }
 
-
-/* ========================================
-   ACCESSIBILITY
-======================================== */
-
 @media (prefers-reduced-motion: reduce) {
-
     .about-floating-card,
     .cta-floating-icon {
         animation: none;
@@ -1762,5 +1657,4 @@ body {
     .mission-button {
         transition: none;
     }
-
 }

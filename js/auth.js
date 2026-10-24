@@ -1,11 +1,6 @@
-// =====================================
-// MovieFinder Authentication Demo
-// =====================================
-
 const USER_KEY = "movieFinderUser";
 const LOGIN_KEY = "movieFinderLoggedIn";
 
-// Get the saved user's details
 function getCurrentUser() {
     try {
         return JSON.parse(localStorage.getItem(USER_KEY));
@@ -14,7 +9,6 @@ function getCurrentUser() {
     }
 }
 
-// Check whether the user is logged in
 function isLoggedIn() {
     return localStorage.getItem(LOGIN_KEY) === "true"
         && getCurrentUser() !== null;

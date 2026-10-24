@@ -1,8 +1,3 @@
-/* =========================================
-   MOVIEFINDER — EXPLORE FUNCTIONALITY
-   Search, Genre, Sort, Favorites, Watchlist
-========================================= */
-
 (function () {
     "use strict";
 
@@ -11,11 +6,6 @@
 
     const INITIAL_DISPLAY_COUNT = 12;
     const DISPLAY_INCREMENT = 12;
-
-    /*
-     * OMDb does not provide a dedicated top-30 ranking endpoint.
-     * These are curated popular movie picks, not an official ranking.
-     */
 
     const POPULAR_MOVIES = [
         "The Dark Knight",
@@ -91,14 +81,7 @@
     let modalInstance = null;
 
     const posterFallback = "https://placehold.co/400x600/171727/a78bfa?text=No+Poster";
-
-
-    /* =========================================
-       INITIALIZATION
-    ========================================= */
-
     document.addEventListener("DOMContentLoaded", initialize);
-
     function initialize() {
         if (window.bootstrap && elements.toast) {
             toastInstance = bootstrap.Toast.getOrCreateInstance(
@@ -118,18 +101,11 @@
         loadPopularMovies();
     }
 
-
-    /* =========================================
-       EVENTS
-    ========================================= */
-
     function attachEvents() {
         if (elements.searchForm) {
             elements.searchForm.addEventListener("submit", function (event) {
                 event.preventDefault();
-
                 const query = elements.searchInput.value.trim();
-
                 if (query) {
                     searchMovies(query);
                 } else {
@@ -189,22 +165,10 @@
         });
     }
 
-
-    /* =========================================
-       LOAD INITIAL 30 MOVIES
-    ========================================= */
-
     async function loadPopularMovies() {
         showLoading();
-
         allMovies = [];
-
         const uniqueTitles = new Set();
-
-        /*
-         * Fetch in small batches to avoid sending all requests at once.
-         * The poster and movie information come directly from OMDb.
-         */
 
         const batchSize = 5;
 
@@ -218,22 +182,11 @@
             );
 
             results.forEach(function (movie) {
-                if (
-                    movie &&
-                    movie.Response === "True" &&
-                    movie.Type === "movie" &&
-                    movie.imdbID &&
-                    !uniqueTitles.has(movie.imdbID)
-                ) {
+                if (movie && movie.Response === "True" && movie.Type === "movie" && movie.imdbID && !uniqueTitles.has(movie.imdbID)) {
                     uniqueTitles.add(movie.imdbID);
                     allMovies.push(normalizeMovie(movie));
                 }
             });
-
-            /*
-             * Show movies as each batch finishes rather than waiting
-             * for every request before rendering the first results.
-             */
 
             applyFilters();
         }
@@ -247,7 +200,6 @@
 
         applyFilters();
     }
-
 
     async function fetchMovieByTitle(title) {
         try {
@@ -269,7 +221,6 @@
             return null;
         }
     }
-
 
     function normalizeMovie(movie) {
         return {
@@ -646,11 +597,6 @@
         `;
     }
 
-
-    /* =========================================
-       MOVIE CARD EVENTS
-    ========================================= */
-
     function handleMovieGridClick(event) {
         const button = event.target.closest("[data-action]");
 
@@ -677,11 +623,6 @@
             showMovieDetails(movie);
         }
     }
-
-
-    /* =========================================
-       FAVORITES AND WATCHLIST
-    ========================================= */
 
     function getStorage() {
         return window.MovieStorage || null;
@@ -786,11 +727,6 @@
             watchlistCount.textContent = watchlist.length;
         }
     }
-
-
-    /* =========================================
-       MOVIE DETAILS MODAL
-    ========================================= */
 
     function showMovieDetails(movie) {
         if (!elements.modalBody) {
@@ -903,11 +839,6 @@
         }
     }
 
-
-    /* =========================================
-       LOAD MORE
-    ========================================= */
-
     function loadMoreMovies() {
         if (visibleCount >= filteredMovies.length) {
             return;
@@ -916,11 +847,6 @@
         visibleCount += DISPLAY_INCREMENT;
         renderMovies();
     }
-
-
-    /* =========================================
-       SEARCH STATUS
-    ========================================= */
 
     function updateSearchStatus() {
         if (!elements.activeSearchContainer) {
@@ -935,11 +861,6 @@
             elements.activeSearchText.textContent = currentSearch;
         }
     }
-
-
-    /* =========================================
-       RESET
-    ========================================= */
 
     function resetExplore() {
         requestNumber++;
@@ -980,11 +901,6 @@
             });
         }
     }
-
-
-    /* =========================================
-       LOADING / ERROR
-    ========================================= */
 
     function showLoading() {
         if (!elements.movieGrid) {
@@ -1045,11 +961,6 @@
         }
     }
 
-
-    /* =========================================
-       TOAST
-    ========================================= */
-
     function showToast(message) {
         if (!elements.toast || !elements.toastMessage) {
             return;
@@ -1071,10 +982,6 @@
     }
 
 
-    /* =========================================
-       HTML ESCAPING
-    ========================================= */
-
     function escapeHTML(value) {
         return String(value ?? "").replace(/[&<>"']/g, function (character) {
             const entities = {
@@ -1084,9 +991,7 @@
                 '"': "&quot;",
                 "'": "&#39;"
             };
-
             return entities[character];
         });
     }
-
 })();

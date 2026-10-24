@@ -1,8 +1,3 @@
-/* =====================================================
-   MOVIEFINDER — CONTACT PAGE
-   File: js/contact.js
-===================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
@@ -29,11 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let toastTimer;
 
-
-    // ==========================================
-    // READ SAVED MESSAGES
-    // ==========================================
-
     function readMessages() {
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
@@ -41,37 +31,25 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!saved) {
                 return [];
             }
-
             const messages = JSON.parse(saved);
-
             return Array.isArray(messages) ? messages : [];
-
         } catch (error) {
             console.error("Could not read messages:", error);
             return [];
         }
     }
 
-
-    // ==========================================
-    // VALIDATION HELPERS
-    // ==========================================
-
     function showError(input, errorElement, message) {
         input.classList.add("is-invalid");
         input.classList.remove("is-valid");
-
         errorElement.textContent = message;
     }
-
 
     function showValid(input, errorElement) {
         input.classList.remove("is-invalid");
         input.classList.add("is-valid");
-
         errorElement.textContent = "";
     }
-
 
     function validateName() {
         const value = fullName.value.trim();
@@ -92,15 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 nameError,
                 "Name must contain at least 2 characters."
             );
-
             return false;
         }
-
         showValid(fullName, nameError);
-
         return true;
     }
-
 
     function validateEmail() {
         const value = emailID.value.trim();
@@ -189,10 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
-    // VALIDATE WHEN USERS EDIT FIELDS
-    // ==========================================
-
     fullName.addEventListener("input", validateName);
 
     emailID.addEventListener("input", validateEmail);
@@ -272,27 +242,16 @@ document.addEventListener("DOMContentLoaded", function () {
             createdAt: new Date().toISOString()
         };
 
-
-        // Save to browser storage.
-
         submitBtn.disabled = true;
-
         try {
             const messages = readMessages();
-
             messages.unshift(message);
-
             localStorage.setItem(
                 STORAGE_KEY,
                 JSON.stringify(messages)
             );
-
-            // Reset the form.
-
             contactForm.reset();
-
             charCount.textContent = "0";
-
             [
                 [fullName, nameError],
                 [emailID, emailError],

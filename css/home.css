@@ -1,12 +1,3 @@
-/* =========================================
-   MOVIEFINDER — HOME PAGE
-   Modern Dark Purple Design
-========================================= */
-
-/* =========================================
-   1. ROOT VARIABLES
-========================================= */
-
 :root {
     --bg-primary: #0b0b14;
     --bg-secondary: #11111e;
@@ -31,12 +22,8 @@
     --radius-lg: 24px;
 
     --transition: all 0.25s ease;
+
 }
-
-
-/* =========================================
-   2. GLOBAL STYLES
-========================================= */
 
 * {
     box-sizing: border-box;
@@ -105,11 +92,6 @@ section {
 .section-spacing {
     padding: 100px 0;
 }
-
-
-/* =========================================
-   3. NAVBAR
-========================================= */
 
 .custom-navbar {
     position: sticky;
@@ -242,8 +224,6 @@ section {
     filter: invert(1);
 }
 
-/* Login and Profile */
-
 .login-btn {
     border: 1px solid rgba(139, 92, 246, 0.35);
     background: rgba(139, 92, 246, 0.12);
@@ -315,11 +295,6 @@ section {
     color: var(--danger);
 }
 
-
-/* =========================================
-   4. HERO SECTION
-========================================= */
-
 .hero-section {
     position: relative;
     display: flex;
@@ -328,16 +303,12 @@ section {
     padding: 90px 0 100px;
     overflow: hidden;
     background:
-        radial-gradient(
-            ellipse at 5% 15%,
+        radial-gradient(ellipse at 5% 15%,
             rgba(139, 92, 246, 0.1),
-            transparent 40%
-        ),
-        radial-gradient(
-            ellipse at 90% 75%,
+            transparent 40%),
+        radial-gradient(ellipse at 90% 75%,
             rgba(91, 33, 182, 0.08),
-            transparent 35%
-        ),
+            transparent 35%),
         var(--bg-primary);
 }
 
@@ -402,7 +373,7 @@ section {
     letter-spacing: -3px;
 }
 
-.hero-content h1 > span {
+.hero-content h1>span {
     display: inline-block;
     background: linear-gradient(90deg, #a78bfa, #d8b4fe);
     background-clip: text;
@@ -417,8 +388,6 @@ section {
     font-size: 15px;
     line-height: 1.95;
 }
-
-/* Search Box */
 
 .search-box {
     display: flex;
@@ -503,8 +472,6 @@ section {
     color: var(--accent-light);
 }
 
-/* Hero Features */
-
 .hero-features {
     display: flex;
     flex-wrap: wrap;
@@ -548,11 +515,6 @@ section {
     font-size: 10px;
 }
 
-
-/* =========================================
-   5. HERO VISUAL
-========================================= */
-
 .hero-visual {
     position: relative;
     display: flex;
@@ -589,11 +551,9 @@ section {
     padding: 15px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 25px;
-    background: linear-gradient(
-        145deg,
-        rgba(31, 30, 52, 0.98),
-        rgba(19, 19, 34, 0.98)
-    );
+    background: linear-gradient(145deg,
+            rgba(31, 30, 52, 0.98),
+            rgba(19, 19, 34, 0.98));
     box-shadow:
         0 30px 90px rgba(0, 0, 0, 0.4),
         0 0 70px rgba(139, 92, 246, 0.06);
@@ -645,11 +605,9 @@ section {
     border: 1px solid rgba(167, 139, 250, 0.14);
     border-radius: 17px;
     background:
-        radial-gradient(
-            circle at 50% 30%,
+        radial-gradient(circle at 50% 30%,
             rgba(167, 139, 250, 0.25),
-            transparent 40%
-        ),
+            transparent 40%),
         linear-gradient(155deg, #282044, #17172d 60%, #10101e);
     text-align: center;
 }
@@ -675,11 +633,9 @@ section {
     margin-bottom: 26px;
     border: 1px solid rgba(196, 181, 253, 0.25);
     border-radius: 23px;
-    background: linear-gradient(
-        145deg,
-        rgba(139, 92, 246, 0.25),
-        rgba(139, 92, 246, 0.06)
-    );
+    background: linear-gradient(145deg,
+            rgba(139, 92, 246, 0.25),
+            rgba(139, 92, 246, 0.06));
     color: #c4b5fd;
     font-size: 32px;
     box-shadow: 0 0 45px rgba(139, 92, 246, 0.12);
@@ -847,11 +803,6 @@ section {
     font-size: 9px;
 }
 
-
-/* =========================================
-   6. SECTION HEADINGS
-========================================= */
-
 .section-heading {
     display: flex;
     align-items: flex-end;
@@ -894,7 +845,7 @@ section {
 }
 
 .section-heading p,
-.about-heading > p {
+.about-heading>p {
     max-width: 620px;
     margin: 0;
     color: var(--text-secondary);
@@ -918,11 +869,6 @@ section {
     gap: 15px;
     color: #fff;
 }
-
-
-/* =========================================
-   7. FEATURED MOVIES SECTION
-========================================= */
 
 .featured-section {
     background: var(--bg-secondary);
@@ -989,8 +935,6 @@ section {
     display: none !important;
 }
 
-/* Movie Card */
-
 .movie-grid {
     align-items: stretch;
 }
@@ -1023,11 +967,9 @@ section {
     overflow: hidden;
     aspect-ratio: 2 / 3;
     background:
-        radial-gradient(
-            circle at 50% 35%,
+        radial-gradient(circle at 50% 35%,
             rgba(139, 92, 246, 0.2),
-            transparent 45%
-        ),
+            transparent 45%),
         #171727;
 }
 
@@ -1196,11 +1138,6 @@ section {
     transform: translateX(3px);
 }
 
-
-/* =========================================
-   8. LOADING, EMPTY & ERROR STATES
-========================================= */
-
 .loading-container,
 .empty-state,
 .error-state {
@@ -1318,19 +1255,12 @@ section {
     opacity: 0.55;
 }
 
-
-/* =========================================
-   9. ABOUT SECTION
-========================================= */
-
 .about-section {
     overflow: hidden;
     background:
-        radial-gradient(
-            ellipse at 50% 0,
+        radial-gradient(ellipse at 50% 0,
             rgba(139, 92, 246, 0.055),
-            transparent 50%
-        ),
+            transparent 50%),
         var(--bg-primary);
 }
 
@@ -1339,7 +1269,7 @@ section {
     margin: 0 auto;
 }
 
-.about-heading > p {
+.about-heading>p {
     max-width: 620px;
     margin: 0 auto;
 }
@@ -1354,11 +1284,9 @@ section {
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: 18px;
-    background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.035),
-        rgba(255, 255, 255, 0.012)
-    );
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, 0.035),
+            rgba(255, 255, 255, 0.012));
     transition: var(--transition);
 }
 
@@ -1466,11 +1394,6 @@ section {
     color: #fff;
 }
 
-
-/* =========================================
-   10. CALL TO ACTION
-========================================= */
-
 .cta-section {
     padding: 15px 0 100px;
     background: var(--bg-primary);
@@ -1487,11 +1410,9 @@ section {
     border: 1px solid rgba(167, 139, 250, 0.18);
     border-radius: 25px;
     background:
-        radial-gradient(
-            ellipse at 100% 0,
+        radial-gradient(ellipse at 100% 0,
             rgba(139, 92, 246, 0.18),
-            transparent 45%
-        ),
+            transparent 45%),
         linear-gradient(135deg, #19182d, #151524);
 }
 
@@ -1567,11 +1488,6 @@ section {
     height: 430px;
 }
 
-
-/* =========================================
-   11. FOOTER
-========================================= */
-
 .site-footer {
     padding: 60px 0 0;
     border-top: 1px solid var(--border);
@@ -1625,7 +1541,7 @@ section {
     font-weight: 750;
 }
 
-.site-footer .col-6 > a {
+.site-footer .col-6>a {
     display: block;
     width: fit-content;
     margin-bottom: 12px;
@@ -1634,7 +1550,7 @@ section {
     transition: var(--transition);
 }
 
-.site-footer .col-6 > a:hover {
+.site-footer .col-6>a:hover {
     padding-left: 4px;
     color: var(--accent-light);
 }
@@ -1681,11 +1597,6 @@ section {
     margin-left: 4px;
     color: #f472b6;
 }
-
-
-/* =========================================
-   12. MOVIE DETAILS MODAL
-========================================= */
 
 .movie-modal-content {
     overflow: hidden;
@@ -1816,11 +1727,6 @@ section {
     color: #fff;
 }
 
-
-/* =========================================
-   13. TOAST NOTIFICATIONS
-========================================= */
-
 .app-toast {
     min-width: 280px;
     border: 1px solid rgba(139, 92, 246, 0.25);
@@ -1849,17 +1755,13 @@ section {
     opacity: 0.7;
 }
 
-
-/* =========================================
-   14. ACCESSIBILITY
-========================================= */
-
 :focus-visible {
     outline: 2px solid #c4b5fd;
     outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -1869,13 +1771,6 @@ section {
         transition-duration: 0.01ms !important;
     }
 }
-
-
-/* =========================================
-   15. RESPONSIVE DESIGN
-========================================= */
-
-/* Large tablets and smaller desktops */
 
 @media (max-width: 1199px) {
     .navbar-brand {
@@ -1905,10 +1800,8 @@ section {
     .floating-collection {
         left: -15px;
     }
+
 }
-
-
-/* Bootstrap navbar collapse */
 
 @media (max-width: 991px) {
     .custom-navbar {
@@ -1985,10 +1878,8 @@ section {
     .cta-content {
         padding: 45px 35px;
     }
+
 }
-
-
-/* Tablets */
 
 @media (max-width: 767px) {
     .section-spacing {
@@ -2100,10 +1991,8 @@ section {
     .modal-movie-info h3 {
         font-size: 20px;
     }
+
 }
-
-
-/* Mobile phones */
 
 @media (max-width: 575px) {
     .container {
@@ -2275,7 +2164,7 @@ section {
     }
 
     .section-heading p,
-    .about-heading > p {
+    .about-heading>p {
         font-size: 12px;
     }
 
@@ -2357,7 +2246,7 @@ section {
         font-size: 12px;
     }
 
-    .site-footer .col-6 > a {
+    .site-footer .col-6>a {
         font-size: 10px;
     }
 
@@ -2385,10 +2274,8 @@ section {
     .modal-movie-info h3 {
         font-size: 22px;
     }
+
 }
-
-
-/* Very small phones */
 
 @media (max-width: 360px) {
     .container {
